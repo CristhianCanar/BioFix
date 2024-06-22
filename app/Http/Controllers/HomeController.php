@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -17,7 +18,7 @@ class HomeController extends Controller
         $interactionsTotal = 42;
         $fincasTotal = 2;
         $usersTotal = User::whereMonth('created_at', Carbon::now()->month)->count();
-
+        Alert::success('Ejemplo');
         return view('admin.stadistics.dashboard', compact('interactionsTotal', 'fincasTotal', 'usersTotal'));
     }
 }
