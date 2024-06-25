@@ -51,12 +51,12 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- CSS Files -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('atlantis/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('atlantis/assets/css/atlantis.css') }}" rel="stylesheet">
 </head>
 
 <body data-background-color="dark">
-    <div class="wrapper sidebar_minimize">
+    <div class="wrapper">
         <div class="main-header">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark2">
@@ -165,22 +165,29 @@
                             </div>
                         </li>
 
-                        <li class="nav-item {{ request()->is(['dashboard', '/']) ? 'active' : '' }}">
-                            <a data-toggle="collapse" href="#students">
-                                <i class="fas fa-address-book"></i>
-                                <p>Gestionar usuarios</p>
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </span>
+                            <h4 class="text-section">Equipos</h4>
+                        </li>
+
+                        <li class="nav-item {{ request()->is(['equipos.*']) ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#equipos">
+                                <i class="fas fa-ruler-combined"></i>
+                                <p>Gestionar equipos</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="students">
+                            <div class="collapse" id="equipos">
                                 <ul class="nav nav-collapse">
-                                    <li class="{{ request()->is(['dashboard', '/']) ? 'active' : '' }}">
-                                        <a href="#">
-                                            <span class="sub-item">Registrar usuario</span>
+                                    <li class="{{ request()->is(['equipos.create']) ? 'active' : '' }}">
+                                        <a href="{{ route('equipos.create') }}">
+                                            <span class="sub-item">Registrar equipo</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="sub-item">Gestionar usuarios</span>
+                                    <li class="{{ request()->is(['equipos.index']) ? 'active' : '' }}">
+                                        <a href="{{ route('equipos.index') }}">
+                                            <span class="sub-item">Gestionar equipos</span>
                                         </a>
                                     </li>
                                 </ul>
