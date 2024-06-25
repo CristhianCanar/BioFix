@@ -1,85 +1,75 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="page-inner">
-        <div class="page-header">
-            <h4 class="page-title">Registrar Curso</h4>
-            <ul class="breadcrumbs">
-                <li class="nav-home">
-                    <a href="{{ route('dashboard') }}">
-                        <i class="flaticon-home"></i>
-                    </a>
-                </li>
-                <li class="separator">
-                    <i class="flaticon-right-arrow"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('course.index') }}">Cursos</a>
-                </li>
-                <li class="separator">
-                    <i class="flaticon-right-arrow"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('course.create') }}">Registrar Curso</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <form class="needs-validation" method="POST" action="{{ route('course.store') }}" novalidate>
-                                @csrf
-                                @method('POST')
-                                <div class="form-row justify-content-center">
-
-                                    <div class="form-group col-10 col-lg-8">
-                                        <label class="form-label" for="text"><span data-toggle="tooltip"
-                                                title="Campo Obligatorio">*</span> Institución educativa</label>
-                                        <select class="custom-select" name="id_institution" id="id_institution" required>
-                                            <option value="" selected disabled>
-                                                Seleccione la institución o colegio
-                                            </option>
-                                            @foreach ($institutions as $institution)
-                                                <option value="{{ $institution->id_institution }}">
-                                                    {{ $institution->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Selecciona una institución educativa
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-10 col-lg-8">
-                                        <label class="form-label" for="text"><span data-toggle="tooltip"
-                                                title="Campo Obligatorio">*</span> Nombre del curso</label>
-                                        <input type="text"
-                                            class="form-control @error('name') is-invalid @enderror"
-                                            name="name" id="name" value="{{ old('name') }}"
-                                            maxlength="15" required>
-                                        <div class="invalid-feedback">
-                                            Escribe el nombre del curso
-                                        </div>
-                                        @error('name')
-                                            <div class="invalid-feedback">
-                                                El name no cumple con las características mínimas
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group col-10 col-lg-8 mt-3">
-                                        <button class="btn btn-success w-100" type="submit"><i class="la icon-pencil mr-3"></i>
-                                            Registrar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+<div class="page-inner">
+    <div class="col-10 mt-4 mx-auto">
+        @component('components.card-form', ['title' => 'Registrar equipo'])
+            <form class="needs-validation" method="POST" action="{{ route('equipos.store') }}" novalidate>
+                @csrf
+                @method('POST')
+                <div class="form-group">
+                    <label class="form-label" for="text">Código <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('codigo') is-invalid @enderror" name="codigo"
+                        id="codigo" value="{{ old('codigo') }}" maxlength="15" required>
+                    <div class="invalid-feedback">
+                        Escribe el código
                     </div>
+                    @error('codigo')
+                    <div class="invalid-feedback">
+                        El código no cumple con las características mínimas
+                    </div>
+                    @enderror
                 </div>
-            </div>
-        </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="text">Nombre <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" name="nombre"
+                        id="nombre" value="{{ old('nombre') }}" maxlength="15" required>
+                    <div class="invalid-feedback">
+                        Escribe el nombre
+                    </div>
+                    @error('nombre')
+                    <div class="invalid-feedback">
+                        El nombre no cumple con las características mínimas
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="text">Tipo de equipo <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('tipo_equipo') is-invalid @enderror" name="tipo_equipo"
+                        id="tipo_equipo" value="{{ old('tipo_equipo') }}" maxlength="15" required>
+                    <div class="invalid-feedback">
+                        Escribe el tipo de equipo
+                    </div>
+                    @error('tipo_equipo')
+                    <div class="invalid-feedback">
+                        El tipo de equipo no cumple con las características mínimas
+                    </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="text">Fecha de ingreso <span class="text-danger">*</span></label>
+                    <input type="date" class="form-control @error('fecha_ingreso') is-invalid @enderror" name="fecha_ingreso"
+                        id="fecha_ingreso" value="{{ old('fecha_ingreso') }}" maxlength="15" required>
+                    <div class="invalid-feedback">
+                        Escribe la fecha de ingreso
+                    </div>
+                    @error('fecha_ingreso')
+                    <div class="invalid-feedback">
+                        La fecha de ingreso no cumple con las características mínimas
+                    </div>
+                    @enderror
+                </div>
+
+
+                <div class="form-group mt-4 mx-auto">
+                    <button class="btn btn-success w-100" type="submit"><i class="la icon-pencil mr-3"></i>
+                        Registrar</button>
+                </div>
+            </form>
+        @endcomponent
     </div>
+</div>
 @endsection

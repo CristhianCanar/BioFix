@@ -10,14 +10,9 @@ class EquipoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($equipos = null)
+    public function index()
     {
-        if ($equipos != null) {
-            $equipos = Equipo::orderBy('nombre', 'asc')->paginate(20);
-            return view('admin.equipos.manage', compact('equipos'));
-        }
-
-        $equipos = Equipo::orderBy('nombre', 'asc')->paginate(20);
+        $equipos = Equipo::orderBy('nombre', 'asc')->paginate(2);
         return view('admin.equipos.manage', compact('equipos'));
     }
 
@@ -26,7 +21,7 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.equipos.register');
     }
 
     /**

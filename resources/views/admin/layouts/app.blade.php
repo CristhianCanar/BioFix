@@ -26,7 +26,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Sparkline -->
     <script src="{{ asset('atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
-    <!--JS de Aut. Emocional HUB-->
+    <!--JS personalizado-->
     <script src="{{ asset('js/admin.js') }}"></script>
     <!-- Fonts and icons -->
     <script src="{{ asset('atlantis/assets/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -53,9 +53,11 @@
     <!-- CSS Files -->
     <link href="{{ asset('atlantis/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('atlantis/assets/css/atlantis.css') }}" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
-<body data-background-color="dark">
+<body>
     <div class="wrapper">
         <div class="main-header">
             <!-- Logo Header -->
@@ -172,20 +174,20 @@
                             <h4 class="text-section">Equipos</h4>
                         </li>
 
-                        <li class="nav-item {{ request()->is(['equipos.*']) ? 'active' : '' }}">
+                        <li class="nav-item {{ request()->routeIs('equipos.*') ? 'active' : '' }}" >
                             <a data-toggle="collapse" href="#equipos">
                                 <i class="fas fa-ruler-combined"></i>
                                 <p>Gestionar equipos</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="equipos">
+                            <div class="collapse {{ request()->routeIs('equipos.*') ? 'show' : '' }}" id="equipos">
                                 <ul class="nav nav-collapse">
-                                    <li class="{{ request()->is(['equipos.create']) ? 'active' : '' }}">
+                                    <li class="{{ request()->routeIs('equipos.create') ? 'active' : '' }}">
                                         <a href="{{ route('equipos.create') }}">
                                             <span class="sub-item">Registrar equipo</span>
                                         </a>
                                     </li>
-                                    <li class="{{ request()->is(['equipos.index']) ? 'active' : '' }}">
+                                    <li class="{{ request()->routeIs('equipos.index') ? 'active' : '' }}">
                                         <a href="{{ route('equipos.index') }}">
                                             <span class="sub-item">Gestionar equipos</span>
                                         </a>
