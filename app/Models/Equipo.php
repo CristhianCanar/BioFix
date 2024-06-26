@@ -15,6 +15,7 @@ class Equipo extends Model
         'tipo_equipo',
         'fecha_ingreso',
         'fecha_vencimiento',
+        'url_imagen',
     ];
 
 }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tipo_equipo',200);
             $table->date('fecha_ingreso');
             $table->date('fecha_vencimiento');
+            $table->text('url_imagen')->nullable();
             $table->timestamps();
         });
     }
