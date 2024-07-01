@@ -18,4 +18,9 @@ class Empresa extends Model
         'direccion',
         'telefono',
     ];
+
+    public function municipios()
+    {
+        return $this->belongsTo(Municipio::class, 'municipio_id', 'id_municipio');
+    }
 }

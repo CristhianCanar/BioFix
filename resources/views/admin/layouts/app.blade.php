@@ -137,6 +137,64 @@
                             </a>
                         </li>
 
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <h4 class="text-section">Equipos</h4>
+                        </li>
+
+                        <li class="nav-item {{ request()->routeIs('equipos.*') ? 'active' : '' }}" >
+                            <a data-toggle="collapse" href="#equipos">
+                                <i class="fas fa-ruler-combined"></i>
+                                <p>Gestionar equipos</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse {{ request()->routeIs('equipos.*') ? 'show' : '' }}" id="equipos">
+                                <ul class="nav nav-collapse">
+                                    <li class="{{ request()->routeIs('equipos.create') ? 'active' : '' }}">
+                                        <a href="{{ route('equipos.create') }}">
+                                            <span class="sub-item">Registrar equipo</span>
+                                        </a>
+                                    </li>
+                                    <li class="{{ request()->routeIs('equipos.index') ? 'active' : '' }}">
+                                        <a href="{{ route('equipos.index') }}">
+                                            <span class="sub-item">Gestionar equipos</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <h4 class="text-section">Empresas</h4>
+                        </li>
+
+                        <li class="nav-item {{ request()->routeIs('empresas.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#empresas">
+                                <i class="fas fa-industry"></i>
+                                <p>Gestionar empresas</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse {{ request()->routeIs('empresas.*') ? 'show' : '' }}" id="empresas">
+                                <ul class="nav nav-collapse">
+                                    <li class="{{ request()->routeIs('empresas.create') ? 'active' : '' }}">
+                                        <a href="{{ route('empresas.create') }}">
+                                            <span class="sub-item">Registrar empresa</span>
+                                        </a>
+                                    </li>
+                                    <li class="{{ request()->routeIs(['empresas.index', 'empresas.show']) ? 'active' : '' }}">
+                                        <a href="{{ route('empresas.index') }}">
+                                            <span class="sub-item">Gestionar empresas</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
 
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
@@ -167,34 +225,6 @@
                             </div>
                         </li>
 
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fas fa-ruler-combined"></i>
-                            </span>
-                            <h4 class="text-section">Equipos</h4>
-                        </li>
-
-                        <li class="nav-item {{ request()->routeIs('equipos.*') ? 'active' : '' }}" >
-                            <a data-toggle="collapse" href="#equipos">
-                                <i class="fas fa-ruler-combined"></i>
-                                <p>Gestionar equipos</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse {{ request()->routeIs('equipos.*') ? 'show' : '' }}" id="equipos">
-                                <ul class="nav nav-collapse">
-                                    <li class="{{ request()->routeIs('equipos.create') ? 'active' : '' }}">
-                                        <a href="{{ route('equipos.create') }}">
-                                            <span class="sub-item">Registrar equipo</span>
-                                        </a>
-                                    </li>
-                                    <li class="{{ request()->routeIs('equipos.index') ? 'active' : '' }}">
-                                        <a href="{{ route('equipos.index') }}">
-                                            <span class="sub-item">Gestionar equipos</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>

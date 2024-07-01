@@ -3,7 +3,7 @@
 @section('content')
     <div class="page-inner">
         <div class="col-10 mt-4 mx-auto">
-            @component('components.card-form', ['title' => 'Registrar equipo'])
+            @component('components.card-form', ['title' => 'Registrar equipo', 'show' => false])
                 <form action="{{ route('equipos.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation"
                     novalidate>
                     @csrf
