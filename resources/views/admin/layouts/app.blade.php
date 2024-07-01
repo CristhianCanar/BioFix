@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>{{env('APP_NAME')}}</title>
+    <title>{{ env('APP_NAME') }}</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <link rel="shortcut icon" href="{{ asset('img/icon.svg') }}" />
 
@@ -102,7 +102,8 @@
                             <ul class="dropdown-menu dropdown-user animated fadeIn">
                                 <div class="dropdown-user-scroll scrollbar-outer">
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                             Cerrar sesión
                                         </a>
@@ -144,7 +145,7 @@
                             <h4 class="text-section">Equipos</h4>
                         </li>
 
-                        <li class="nav-item {{ request()->routeIs('equipos.*') ? 'active' : '' }}" >
+                        <li class="nav-item {{ request()->routeIs('equipos.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#equipos">
                                 <i class="fas fa-ruler-combined"></i>
                                 <p>Gestionar equipos</p>
@@ -179,14 +180,17 @@
                                 <p>Gestionar empresas</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse {{ request()->routeIs('empresas.*') ? 'show' : '' }}" id="empresas">
+                            <div class="collapse {{ request()->routeIs('empresas.*') ? 'show' : '' }}"
+                                id="empresas">
                                 <ul class="nav nav-collapse">
-                                    <li class="{{ request()->routeIs('empresas.create') ? 'active' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs(['empresas.create', 'empresas.store']) ? 'active' : '' }}">
                                         <a href="{{ route('empresas.create') }}">
                                             <span class="sub-item">Registrar empresa</span>
                                         </a>
                                     </li>
-                                    <li class="{{ request()->routeIs(['empresas.index', 'empresas.show']) ? 'active' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs(['empresas.index', 'empresas.show', 'empresas.edit', 'empresas.update', 'empresas.destroy']) ? 'active' : '' }}">
                                         <a href="{{ route('empresas.index') }}">
                                             <span class="sub-item">Gestionar empresas</span>
                                         </a>
@@ -239,7 +243,7 @@
                     <nav class="pull-left">
                     </nav>
                     <div class="copyright ml-auto">
-                        {{now()->year}} © con❤️<a href="https://www.uniautonoma.edu.co" target="_blank"
+                        {{ now()->year }} © con❤️<a href="https://www.uniautonoma.edu.co" target="_blank"
                             style="text-decoration: none">Uniautónoma</a> v{{ ENV('APP_VERSION') }}
                     </div>
                 </div>

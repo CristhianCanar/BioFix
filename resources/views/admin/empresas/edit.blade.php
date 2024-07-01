@@ -2,99 +2,118 @@
 
 @section('content')
     <div class="page-inner">
-        <div class="page-header">
-            <h4 class="page-title">Editar Curso</h4>
-            <ul class="breadcrumbs">
-                <li class="nav-home">
-                    <a href="{{ route('dashboard') }}">
-                        <i class="flaticon-home"></i>
-                    </a>
-                </li>
-                <li class="separator">
-                    <i class="flaticon-right-arrow"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('course.index') }}">Cursos</a>
-                </li>
-                <li class="separator">
-                    <i class="flaticon-right-arrow"></i>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('course.edit', $course->id_course) }}">Editar Curso</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <form class="needs-validation" method="POST" action="{{ route('course.update', $course->id_course) }}"
-                                {{-- enctype="multipart/form-data" --}} novalidate>
-                                @csrf
-                                @method('PUT')
-                                <div class="form-row justify-content-center">
-
-                                    <div class="form-group col-10 col-lg-8">
-                                        <label class="form-label" for="text"><span data-toggle="tooltip"
-                                                title="Campo Obligatorio">*</span> Institución educativa</label>
-                                        <select class="custom-select" name="id_institution" id="id_institution" required>
-                                            <option value="{{ $course->institutions->id_institution }}" selected>
-                                                {{$course->institutions->name}}
-                                            </option>
-                                            @foreach ($institutions as $institution)
-                                                <option value="{{ $institution->id_institution }}">
-                                                    {{ $institution->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Selecciona una institución educativa
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group col-10 col-lg-8">
-                                        <label class="form-label" for="text"><span data-toggle="tooltip"
-                                                title="Campo Obligatorio">*</span> Nombre del curso</label>
-                                        <input type="text"
-                                            class="form-control @error('name') is-invalid @enderror"
-                                            name="name" id="name" value="{{ $course->name }}"
-                                            maxlength="15" required>
-                                        <div class="invalid-feedback">
-                                            Escribe el nombre del curso
-                                        </div>
-                                        @error('name')
-                                            <div class="invalid-feedback">
-                                                El name no cumple con las características mínimas
-                                            </div>
-                                        @enderror
-                                    </div>
-
-
-
-                                    <div class="form-group col-10 col-lg-8 mt-3">
-                                        <button class="btn btn-primary w-100" type="submit"><i class="la icon-note mr-3"></i> Editar</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+        <div class="col-10 mt-4 mx-auto">
+            @component('components.card-form', ['title' => 'Actualizar empresa', 'show' => false])
+                <form action="{{ route('empresas.update', ['empresa' => $empresa->id]) }}" method="POST"
+                    enctype="multipart/form-data" class="needs-validation" novalidate>
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label class="form-label" for="departamento_id">Departamento <span class="text-danger">*</span></label>
+                        <select class="form-control" name="departamento_id" id="departamento_id" required>
+                            <option value="{{ $empresa->municipios->departamentos->id_departamento }}" selected>
+                                {{ $empresa->municipios->departamentos->nombre }}</option>
+                            @foreach ($departamentos as $departamento)
+                                <option value="{{ $departamento->id_departamento }}">
+                                    {{ $departamento->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('departamento_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
-                </div>
-            </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="municipio_id">Municipio <span class="text-danger">*</span></label>
+                        <select class="form-control" name="municipio_id" id="municipio_id" required
+                            src={{ route('empresas.get_municipios', '#') }}>
+                            <option value="{{ $empresa->municipio_id }}" selected>{{ $empresa->municipios->nombre }}</option>
+                        </select>
+                        @error('municipio_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="text">NIT <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('nit') is-invalid @enderror" name="nit"
+                            id="nit" value="{{ $empresa->nit }}" maxlength="50" required>
+                        @error('nit')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="text">Razón social <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('razon_social') is-invalid @enderror"
+                            name="razon_social" id="razon_social" value="{{ $empresa->razon_social }}" maxlength="200" required>
+                        @error('razon_social')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="text">Número de contrato <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('numero_contrato') is-invalid @enderror"
+                            name="numero_contrato" id="numero_contrato" value="{{ $empresa->numero_contrato }}" maxlength="200"
+                            required>
+                        @error('numero_contrato')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="text">Dirección <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion"
+                            id="direccion" value="{{ $empresa->direccion }}" maxlength="200" required>
+                        @error('direccion')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="text">Teléfono <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono"
+                            id="telefono" value="{{ $empresa->telefono }}" maxlength="20" required>
+                        @error('telefono')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mt-4 mx-auto">
+                        <button class="btn btn-info w-100" type="submit"><i class="la icon-note mr-3"></i>
+                            Actualizar</button>
+                    </div>
+                </form>
+            @endcomponent
         </div>
     </div>
     <script>
-        /* municipios */
-        $("#id_departament").on('change', function() {
-            $("#id_municipality").empty();
+        /* municipalities */
+        $("#departamento_id").on('change', function() {
+            $("#municipio_id").empty();
             if ($(this).val().length == 0) {
                 return false;
             } else {
-                $("#id_municipality")
+                $("#municipio_id")
                     .addClass('fas fa-spinner')
-                    .load($("#id_municipality").attr('src').replace('#', $(this).val()), function() {
-                        $("#id_municipality").prepend($("<option/>").attr({
+                    .load($("#municipio_id").attr('src').replace('#', $(this).val()), function() {
+                        $("#municipio_id").prepend($("<option/>").attr({
                                 selected: true,
                                 disabled: true
                             }).html('Seleccione municipio'))

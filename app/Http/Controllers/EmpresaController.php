@@ -17,7 +17,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas = Empresa::select('id', 'nit', 'razon_social', 'telefono')->orderBy('razon_social', 'asc')->paginate(2);
+        $empresas = Empresa::select('id', 'nit', 'razon_social', 'telefono')->orderBy('razon_social', 'asc')->paginate(10);
         return view('admin.empresas.manage', compact('empresas'));
     }
 
@@ -69,7 +69,7 @@ class EmpresaController extends Controller
                 'No fue posible almacenar el registro de la empresa',
                 "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
             );
-            Log::error('EmpresaController.store ->'. $e->getMessage());
+            Log::error('EmpresaController.store ->' . $e->getMessage());
             return $this->create();
         }
     }
@@ -88,7 +88,9 @@ class EmpresaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $empresa = Empresa::where('id', $id)->first();
+        $departamentos = Departamento::select('id_departamento', 'nombre')->whereNot('id_departamento', $empresa->municipios->departamentos->id_departamento)->get();
+        return view('admin.empresas.edit', compact('empresa', 'departamentos'));
     }
 
     /**
@@ -96,7 +98,42 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'municipio_id' => 'required|string|exists:municipios,id_municipio',
+            'nit' => 'required|string|max:50',
+            'razon_social' => 'required|string|max:200',
+            'numero_contrato' => 'required|string|max:200',
+            'direccion' => 'required|string|max:200',
+            'telefono' => 'required|string|max:20',
+        ]);
+
+        try {
+            $empresa = Empresa::where('id', $id)->update([
+                'municipio_id' => $request->municipio_id,
+                'nit' => $request->nit,
+                'razon_social' => $request->razon_social,
+                'numero_contrato' => $request->numero_contrato,
+                'direccion' => $request->direccion,
+                'telefono' => $request->telefono,
+            ]);
+
+            if (!$empresa) {
+                Alert::error(
+                    'No fue posible actualizar el registro de la empresa',
+                    'Comunicarse con soporte técnico - +573217114140'
+                );
+                return $this->edit($id);
+            }
+            Alert::success('Actualización de la empresa completa', "$request->razon_social actualizada con éxito");
+            return $this->edit($id);
+        } catch (Exception $e) {
+            Alert::error(
+                'No fue posible actualizar el registro de la empresa',
+                "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
+            );
+            Log::error('EmpresaController.store ->' . $e->getMessage());
+            return $this->edit($id);
+        }
     }
 
     /**
@@ -104,7 +141,26 @@ class EmpresaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $empresa = Empresa::where('id', $id)->delete();
+
+            if (!$empresa) {
+                Alert::error(
+                    'No fue posible eliminar el registro de la empresa',
+                    'Comunicarse con soporte técnico - +573217114140'
+                );
+                return $this->index();
+            }
+            Alert::success('Eliminación de la empresa completa');
+            return $this->index();
+        } catch (Exception $e) {
+            Alert::error(
+                'No fue posible eliminar el registro de la empresa',
+                "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
+            );
+            Log::error('EmpresaController.store ->' . $e->getMessage());
+            return $this->index();
+        }
     }
 
     public function getMunicipios($departamento_id)
