@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mantenimientos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre',200);
+        Schema::create('responsables_mantenimientos', function (Blueprint $table) {
+            $table->smallIncrements('id');
+            $table->string('identificacion', 20);
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->string('cargo');
             $table->timestamps();
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mantenimientos');
+        Schema::dropIfExists('responsables_mantenimientos');
     }
 };
