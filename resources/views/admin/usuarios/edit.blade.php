@@ -105,7 +105,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label" for="password-confirm">Confirmar Contraseña <span class="text-danger">*</span></label>
+                        <label class="form-label" for="password-confirm">Confirmar contraseña <span class="text-danger">*</span></label>
                         <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation"
                             id="password-confirm" required>
                     </div>
