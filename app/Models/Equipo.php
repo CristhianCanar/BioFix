@@ -12,6 +12,7 @@ class Equipo extends Model
     protected $fillable = [
         'municipio_id',
         'responsable_id',
+        'empresa_id',
         'nombre',
         'serie',
         'marca',

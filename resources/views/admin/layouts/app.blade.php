@@ -223,7 +223,7 @@
                                                 </a>
                                             </li>
                                         @endcan
-                                        <li class="{{ request()->routeIs(['usuarios.index', 'usuarios.show', 'usuarios.edit', 'usuarios.update', 'usuarios.destroy']) }}">
+                                        <li class="{{ request()->routeIs(['usuarios.index', 'usuarios.show', 'usuarios.edit', 'usuarios.update', 'usuarios.destroy']) ? 'active' : '' }}">
                                             <a href="{{ route('usuarios.index') }}">
                                                 <span class="sub-item">Gestionar usuarios</span>
                                             </a>

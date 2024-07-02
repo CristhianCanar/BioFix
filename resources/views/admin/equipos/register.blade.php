@@ -130,8 +130,8 @@
                         <div class="form-check col-12 col-md-4 d-flex align-items-center mt-4">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('calibracion') is-invalid @enderror"
-                                    name="calibracion" id="calibracion" value="{{ old('calibracion') }}" required
-                                    onclick="cambiarEstadoSelectFrecCalibracion()">
+                                    name="calibracion" id="calibracion"
+                                    onclick="cambiarEstadoSelectFrecCalibracion()" {{ old('calibracion') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Necesita calibración <span class="text-danger">*</span></span>
                             </label>
                             @error('calibracion')
@@ -192,9 +192,9 @@
                         </div>
                         <div class="form-group col-12 col-md-4">
                             <label class="form-label" for="text">Activo fijo <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('marca') is-invalid @enderror" name="marca"
-                                id="marca" value="{{ old('marca') }}" maxlength="100" required>
-                            @error('marca')
+                            <input type="text" class="form-control @error('activo_fijo') is-invalid @enderror" name="activo_fijo"
+                                id="activo_fijo" value="{{ old('activo_fijo') }}" maxlength="100" required>
+                            @error('activo_fijo')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -366,7 +366,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('fa_electrica') is-invalid @enderror"
-                                    name="fa_electrica" id="fa_electrica" value="{{ old('fa_electrica') }}">
+                                    name="fa_electrica" id="fa_electrica" {{ old('fa_electrica') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Eléctrica </span>
                             </label>
                             @error('fa_electrica')
@@ -379,7 +379,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('fa_bateria') is-invalid @enderror"
-                                    name="fa_bateria" id="fa_bateria" value="{{ old('fa_bateria') }}">
+                                    name="fa_bateria" id="fa_bateria" {{ old('fa_bateria') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Batería</span>
                             </label>
                             @error('fa_bateria')
@@ -392,7 +392,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('fa_regulada') is-invalid @enderror"
-                                    name="fa_regulada" id="fa_regulada" value="{{ old('fa_regulada') }}">
+                                    name="fa_regulada" id="fa_regulada" {{ old('fa_regulada') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Regulada</span>
                             </label>
                             @error('fa_regulada')
@@ -411,7 +411,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_medico') is-invalid @enderror"
-                                    name="at_medico" id="at_medico" value="{{ old('at_medico') }}">
+                                    name="at_medico" id="at_medico" {{ old('at_medico') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Médico</span>
                             </label>
                             @error('at_medico')
@@ -423,7 +423,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_apoyo') is-invalid @enderror"
-                                    name="at_apoyo" id="at_apoyo" value="{{ old('at_apoyo') }}">
+                                    name="at_apoyo" id="at_apoyo" {{ old('at_apoyo') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Apoyo</span>
                             </label>
                             @error('at_apoyo')
@@ -435,7 +435,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_basico') is-invalid @enderror"
-                                    name="at_basico" id="at_basico" value="{{ old('at_basico') }}">
+                                    name="at_basico" id="at_basico" {{ old('at_basico') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Básico</span>
                             </label>
                             @error('at_basico')
@@ -447,7 +447,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_transporte') is-invalid @enderror"
-                                    name="at_transporte" id="at_transporte" value="{{ old('at_transporte') }}">
+                                    name="at_transporte" id="at_transporte" {{ old('at_transporte') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Transporte</span>
                             </label>
                             @error('at_transporte')
@@ -461,7 +461,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_clase_I') is-invalid @enderror"
-                                    name="at_clase_I" id="at_clase_I" value="{{ old('at_clase_I') }}">
+                                    name="at_clase_I" id="at_clase_I" {{ old('at_clase_I') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Clase I</span>
                             </label>
                             @error('at_clase_I')
@@ -473,7 +473,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_clase_I_IA') is-invalid @enderror"
-                                    name="at_clase_I_IA" id="at_clase_I_IA" value="{{ old('at_clase_I_IA') }}">
+                                    name="at_clase_I_IA" id="at_clase_I_IA" {{ old('at_clase_I_IA') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Clase I IA</span>
                             </label>
                             @error('at_clase_I_IA')
@@ -485,7 +485,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_clase_I_IB') is-invalid @enderror"
-                                    name="at_clase_I_IB" id="at_clase_I_IB" value="{{ old('at_clase_I_IB') }}">
+                                    name="at_clase_I_IB" id="at_clase_I_IB" {{ old('at_clase_I_IB') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Clase I IB</span>
                             </label>
                             @error('at_clase_I_IB')
@@ -497,7 +497,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('at_clase_III') is-invalid @enderror"
-                                    name="at_clase_III" id="at_clase_III" value="{{ old('at_clase_III') }}">
+                                    name="at_clase_III" id="at_clase_III" {{ old('at_clase_III') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Clase III</span>
                             </label>
                             @error('at_clase_III')
@@ -516,7 +516,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('ct_mecanica') is-invalid @enderror"
-                                    name="ct_mecanica" id="ct_mecanica" value="{{ old('ct_mecanica') }}">
+                                    name="ct_mecanica" id="ct_mecanica" {{ old('ct_mecanica') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Mecánica</span>
                             </label>
                             @error('ct_mecanica')
@@ -528,7 +528,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('ct_hidraulica') is-invalid @enderror"
-                                    name="ct_hidraulica" id="ct_hidraulica" value="{{ old('ct_hidraulica') }}">
+                                    name="ct_hidraulica" id="ct_hidraulica" {{ old('ct_hidraulica') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Hidráulica</span>
                             </label>
                             @error('ct_hidraulica')
@@ -540,7 +540,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('ct_neumatica') is-invalid @enderror"
-                                    name="ct_neumatica" id="ct_neumatica" value="{{ old('ct_neumatica') }}">
+                                    name="ct_neumatica" id="ct_neumatica" {{ old('ct_neumatica') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Neumática</span>
                             </label>
                             @error('ct_neumatica')
@@ -554,7 +554,7 @@
                                 <input type="checkbox"
                                     class="form-check-input @error('ct_electrica_electronica') is-invalid @enderror"
                                     name="ct_electrica_electronica" id="ct_electrica_electronica"
-                                    value="{{ old('ct_electrica_electronica') }}">
+                                    {{ old('ct_electrica_electronica') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Eléctrica electrónica</span>
                             </label>
                             @error('ct_electrica_electronica')
@@ -573,7 +573,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('p_electricos') is-invalid @enderror"
-                                    name="p_electricos" id="p_electricos" value="{{ old('p_electricos') }}">
+                                    name="p_electricos" id="p_electricos" {{ old('p_electricos') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Eléctricos</span>
                             </label>
                             @error('p_electricos')
@@ -585,7 +585,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('p_mecanicos') is-invalid @enderror"
-                                    name="p_mecanicos" id="p_mecanicos" value="{{ old('p_mecanicos') }}">
+                                    name="p_mecanicos" id="p_mecanicos" {{ old('p_mecanicos') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Mecánicos</span>
                             </label>
                             @error('p_mecanicos')
@@ -597,7 +597,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('p_hidraulicos') is-invalid @enderror"
-                                    name="p_hidraulicos" id="p_hidraulicos" value="{{ old('p_hidraulicos') }}">
+                                    name="p_hidraulicos" id="p_hidraulicos" {{ old('p_hidraulicos') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Hidráulicos</span>
                             </label>
                             @error('p_hidraulicos')
@@ -609,7 +609,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('p_otros') is-invalid @enderror"
-                                    name="p_otros" id="p_otros" value="{{ old('p_otros') }}">
+                                    name="p_otros" id="p_otros" {{ old('p_otros') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Otros</span>
                             </label>
                             @error('p_otros')
@@ -628,7 +628,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('m_usuario') is-invalid @enderror"
-                                    name="m_usuario" id="m_usuario" value="{{ old('m_usuario') }}">
+                                    name="m_usuario" id="m_usuario" {{ old('m_usuario') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Usuario</span>
                             </label>
                             @error('m_usuario')
@@ -640,7 +640,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('m_instalacion') is-invalid @enderror"
-                                    name="m_instalacion" id="m_instalacion" value="{{ old('m_instalacion') }}">
+                                    name="m_instalacion" id="m_instalacion" {{ old('m_instalacion') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Instalación</span>
                             </label>
                             @error('m_instalacion')
@@ -652,7 +652,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('m_partes') is-invalid @enderror"
-                                    name="m_partes" id="m_partes" value="{{ old('m_partes') }}">
+                                    name="m_partes" id="m_partes" {{ old('m_partes') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Partes</span>
                             </label>
                             @error('m_partes')
@@ -664,7 +664,7 @@
                         <div class="form-check col-12 col-md-2 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('m_otros') is-invalid @enderror"
-                                    name="m_otros" id="m_otros" value="{{ old('m_otros') }}">
+                                    name="m_otros" id="m_otros" {{ old('m_otros') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Otros</span>
                             </label>
                             @error('m_otros')
@@ -709,7 +709,7 @@
                                 <input type="checkbox"
                                     class="form-check-input @error('registra_accesorios') is-invalid @enderror"
                                     name="registra_accesorios" id="registra_accesorios"
-                                    value="{{ old('registra_accesorios') }}">
+                                    {{ old('registra_accesorios') ? 'checked' : '' }}>
                                 <span class="form-check-sign"> ¿Registra accesorios?</span>
                             </label>
                             @error('registra_accesorios')
@@ -729,7 +729,7 @@
                             <label class="form-label" for="text">Recomendaciones <span
                                     class="text-danger">*</span></label>
                             <textarea class="form-control @error('rf_recomendaciones') is-invalid @enderror" name="rf_recomendaciones"
-                                id="rf_recomendaciones" value="{{ old('rf_recomendaciones') }}" required></textarea>
+                                id="rf_recomendaciones" value="{{ old('rf_recomendaciones') }}" required>{{ old('rf_recomendaciones') }}</textarea>
                             @error('rf_recomendaciones')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -788,7 +788,7 @@
                                 <input type="checkbox"
                                     class="form-check-input @error('cb_apoyo_lab_clinico') is-invalid @enderror"
                                     name="cb_apoyo_lab_clinico" id="cb_apoyo_lab_clinico"
-                                    value="{{ old('cb_apoyo_lab_clinico') }}">
+                                    {{ old('cb_apoyo_lab_clinico') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Apoyo / lab. clínico</span>
                             </label>
                             @error('cb_apoyo_lab_clinico')
@@ -800,7 +800,7 @@
                         <div class="form-check col-12 col-md-3 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('cb_diagnostico') is-invalid @enderror"
-                                    name="cb_diagnostico" id="cb_diagnostico" value="{{ old('cb_diagnostico') }}">
+                                    name="cb_diagnostico" id="cb_diagnostico" {{ old('cb_diagnostico') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Diagnóstico</span>
                             </label>
                             @error('cb_diagnostico')
@@ -814,7 +814,7 @@
                                 <input type="checkbox"
                                     class="form-check-input @error('cb_soporte_mto_vida') is-invalid @enderror"
                                     name="cb_soporte_mto_vida" id="cb_soporte_mto_vida"
-                                    value="{{ old('cb_soporte_mto_vida') }}">
+                                    {{ old('cb_soporte_mto_vida') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Soporte / Mto. de vida</span>
                             </label>
                             @error('cb_soporte_mto_vida')
@@ -829,7 +829,7 @@
                             <label class="form-check-label">
                                 <input type="checkbox"
                                     class="form-check-input @error('cb_rehabilitacion') is-invalid @enderror"
-                                    name="cb_rehabilitacion" id="cb_rehabilitacion" value="{{ old('cb_rehabilitacion') }}">
+                                    name="cb_rehabilitacion" id="cb_rehabilitacion" {{ old('cb_rehabilitacion') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Rehabilitación</span>
                             </label>
                             @error('cb_rehabilitacion')
@@ -841,7 +841,7 @@
                         <div class="form-check col-12 col-md-3 d-flex align-items-center">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('cb_prevencion') is-invalid @enderror"
-                                    name="cb_prevencion" id="cb_prevencion" value="{{ old('cb_prevencion') }}">
+                                    name="cb_prevencion" id="cb_prevencion" {{ old('cb_prevencion') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Prevención</span>
                             </label>
                             @error('cb_prevencion')
@@ -861,7 +861,7 @@
                             <label class="form-check-label">
                                 <input type="checkbox"
                                     class="form-check-input @error('mant_preventivo') is-invalid @enderror"
-                                    name="mant_preventivo" id="mant_preventivo" value="{{ old('mant_preventivo') }}">
+                                    name="mant_preventivo" id="mant_preventivo" {{ old('mant_preventivo') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Mantenimiento preventivo</span>
                             </label>
                             @error('mant_preventivo')
@@ -874,7 +874,7 @@
                             <label class="form-check-label">
                                 <input type="checkbox"
                                     class="form-check-input @error('mant_correctivo') is-invalid @enderror"
-                                    name="mant_correctivo" id="mant_correctivo" value="{{ old('mant_correctivo') }}">
+                                    name="mant_correctivo" id="mant_correctivo" {{ old('mant_correctivo') ? 'checked' : '' }}>
                                 <span class="form-check-sign">Mantenimiento correctivo</span>
                             </label>
                             @error('mant_correctivo')
