@@ -14,9 +14,9 @@ return new class extends Migration {
             $table->smallIncrements('id');
             $table->smallInteger('municipio_id')->unsigned();
             $table->string('nit', 50);
-            $table->string('razon_social', 200);
-            $table->string('numero_contrato', 200);
-            $table->string('direccion', 200);
+            $table->string('razon_social', 100);
+            $table->string('numero_contrato', 100);
+            $table->string('direccion', 100);
             $table->string('telefono', 20);
             $table->timestamps();
 

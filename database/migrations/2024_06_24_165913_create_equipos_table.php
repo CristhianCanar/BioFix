@@ -15,10 +15,10 @@ return new class extends Migration {
             $table->id();
             $table->smallInteger('municipio_id')->unsigned();
             $table->smallInteger('responsable_id')->unsigned();
-            $table->string('nombre', 200);
+            $table->string('nombre', 100);
             $table->string('serie', 100);
             $table->string('marca', 100);
-            $table->string('servicio', 200)->nullable();
+            $table->string('servicio', 100)->nullable();
             $table->text('ubicacion');
             $table->string('codigo_ECRI');
             $table->string('numero_documento');

@@ -90,7 +90,7 @@
                     <div class="collapse" id="search-nav">
                         <div class="user-box">
                             <div class="u-text">
-                                <h2 style="color: white">Bienvenid@ {{ Auth::user()->name }}</h2>
+                                <h2 style="color: white">Bienvenid@ {{ Auth::user()->nombre }}</h2>
                             </div>
                         </div>
                     </div>
@@ -200,34 +200,38 @@
                         </li>
 
 
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Usuarios</h4>
-                        </li>
+                        @can('usuarios_ver')
+                            <li class="nav-section">
+                                <span class="sidebar-mini-icon">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <h4 class="text-section">Usuarios</h4>
+                            </li>
 
-                        <li class="nav-item {{ request()->is(['dashboard', '/']) ? 'active' : '' }}">
-                            <a data-toggle="collapse" href="#students">
-                                <i class="fas fa-address-book"></i>
-                                <p>Gestionar usuarios</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse" id="students">
-                                <ul class="nav nav-collapse">
-                                    <li class="{{ request()->is(['dashboard', '/']) ? 'active' : '' }}">
-                                        <a href="#">
-                                            <span class="sub-item">Registrar usuario</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <span class="sub-item">Gestionar usuarios</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                            <li class="nav-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#usuarios">
+                                    <i class="fas fa-address-book"></i>
+                                    <p>Gestionar usuarios</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ request()->routeIs('usuarios.*') ? 'show' : '' }}" id="usuarios">
+                                    <ul class="nav nav-collapse">
+                                        @can('usuarios_registrar')
+                                            <li class="{{ request()->routeIs(['usuarios.create', 'usuarios.store']) ? 'active' : '' }}">
+                                                <a href="{{ route('usuarios.create') }}">
+                                                    <span class="sub-item">Registrar usuario</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        <li class="{{ request()->routeIs(['usuarios.index', 'usuarios.show', 'usuarios.edit', 'usuarios.update', 'usuarios.destroy']) }}">
+                                            <a href="{{ route('usuarios.index') }}">
+                                                <span class="sub-item">Gestionar usuarios</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @endcan
 
                     </ul>
                 </div>

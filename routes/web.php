@@ -4,6 +4,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,23 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+/**
+ * Usuarios
+ */
+Route::middleware(['auth','can:usuarios_ver'])->name('usuarios.')->group(function (){
+    Route::get('/usuarios', [UsuarioController::class, 'index'])->name('index');
+
+    Route::get('/usuario/create', [UsuarioController::class, 'create'])->middleware(['can:usuarios_registrar'])->name('create');
+    Route::post('/usuario', [UsuarioController::class, 'store'])->middleware(['can:usuarios_registrar'])->name('store');
+
+    Route::get('/usuario/{id}', [UsuarioController::class, 'show'])->name('show');
+
+    Route::get('/usuario/{id}/edit', [UsuarioController::class, 'edit'])->middleware(['can:usuarios_editar'])->name('edit');
+    Route::put('/usuario/{id}', [UsuarioController::class, 'update'])->middleware(['can:usuarios_editar'])->name('update');
+
+    Route::delete('/usuario/{id}', [UsuarioController::class, 'destroy'])->middleware(['can:usuarios_eliminar'])->name('destroy');
+});
 
 /**
  * Empresas

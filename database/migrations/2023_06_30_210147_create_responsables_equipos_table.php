@@ -13,9 +13,9 @@ return new class extends Migration {
         Schema::create('responsables_equipos', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->smallInteger('empresa_id')->unsigned();
-            $table->string('nombre', 200);
-            $table->string('apellido', 200);
-            $table->string('telefono', 200);
+            $table->string('nombre', 100);
+            $table->string('apellido', 100);
+            $table->string('telefono', 100);
             $table->timestamps();
 
             $table->foreign('empresa_id')
