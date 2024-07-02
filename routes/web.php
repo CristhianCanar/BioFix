@@ -28,10 +28,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-/* Equipos */
+
+/**
+ * Empresas
+ */
+Route::middleware(['auth','can:empresas_ver'])->group(function (){
+    Route::resource('empresas', EmpresaController::class);
+});
+
 Route::middleware('auth')->group(function () {
     Route::resource('equipos', EquipoController::class);
-    Route::resource('empresas', EmpresaController::class);
     Route::get('empresas/municipios/{departamento_id}', [EmpresaController::class, 'getMunicipios'])->name('empresas.get_municipios');
 
 });

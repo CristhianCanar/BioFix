@@ -20,13 +20,15 @@
                             <td class="text-truncate">{{ $empresa->telefono }}</td>
                             <td>
                                 <div class="row float-right justify-content-end" style="font-size: 20px">
-                                    <div class="col-3">
-                                        <a href="{{ route('empresas.edit', $empresa->id) }}"
-                                            style="color: #5C55BF;">
-                                            <i class="la icon-note" data-toggle="tooltip"
-                                                title="Editar empresa"></i>
-                                        </a>
-                                    </div>
+                                    @can('empresas_editar')
+                                        <div class="col-3">
+                                            <a href="{{ route('empresas.edit', $empresa->id) }}"
+                                                style="color: #5C55BF;">
+                                                <i class="la icon-note" data-toggle="tooltip"
+                                                    title="Editar empresa"></i>
+                                            </a>
+                                        </div>
+                                    @endcan
                                     <div class="col-3">
                                         <a href="{{ route('empresas.show', $empresa->id) }}"
                                             style="color: #fa8c15;">
@@ -34,19 +36,21 @@
                                                 title="Ver empresa"></i>
                                         </a>
                                     </div>
-                                    <div class="col-3 mr-1">
-                                        <form action="{{ route('empresas.destroy', $empresa->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-light bg-inherit p-0"
-                                                onclick="return confirm('Seguro que desea eliminar el registro del empresa?')">
-                                                <i class="la icon-trash" data-toggle="tooltip"
-                                                    data-placement="top" title="Eliminar empresa"
-                                                    style="font-size: 20px; color: #f44336;"></i>
-                                            </button>
-                                        </form>
-                                    </div>
+                                    @can('empresas_eliminar')
+                                        <div class="col-3 mr-1">
+                                            <form action="{{ route('empresas.destroy', $empresa->id) }}"
+                                                method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-light bg-inherit p-0"
+                                                    onclick="return confirm('Seguro que desea eliminar el registro del empresa?')">
+                                                    <i class="la icon-trash" data-toggle="tooltip"
+                                                        data-placement="top" title="Eliminar empresa"
+                                                        style="font-size: 20px; color: #f44336;"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>
