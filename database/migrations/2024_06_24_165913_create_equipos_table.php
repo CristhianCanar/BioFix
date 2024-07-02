@@ -15,29 +15,30 @@ return new class extends Migration {
             $table->id();
             $table->smallInteger('municipio_id')->unsigned();
             $table->smallInteger('responsable_id')->unsigned();
+            $table->smallInteger('empresa_id')->unsigned();
             $table->string('nombre', 200);
             $table->string('serie', 100);
             $table->string('marca', 100);
             $table->string('servicio', 200)->nullable();
-            $table->text('ubicacion');
-            $table->string('codigo_ECRI');
-            $table->string('numero_documento');
+            $table->string('ubicacion', 200);
+            $table->string('codigo_ECRI', 100);
+            $table->string('numero_documento', 100)->nullable();
             $table->boolean('calibracion');
             $table->enum('frecuencia_calibracion', Constants::FRECUENCIA_CALIBRACION)->nullable();
             $table->enum('frecuencia_mantenimiento', Constants::FRECUENCIA_CALIBRACION);
-            $table->string('modelo');
-            $table->string('activo_fijo');
-            $table->text('url_imagen')->nullable();
+            $table->string('modelo', 100);
+            $table->string('activo_fijo', 100);
+            $table->text('url_imagen')->nullable(); //pdte form
             /* REGISTRO HISTORICO */
-            $table->string('h_reg_INVIMA');
-            $table->string('h_reg_importacion');
-            $table->string('h_reg_FDA');
-            $table->string('h_url_sitio_web');
-            $table->string('h_direccion_proveedor');
-            $table->string('h_telefono');
-            $table->string('h_vida_util');
-            $table->string('h_costo');
-            $table->string('h_garantia');
+            $table->string('h_reg_INVIMA', 100);
+            $table->string('h_reg_importacion', 100);
+            $table->string('h_reg_FDA', 100);
+            $table->string('h_url_sitio_web', 200);
+            $table->string('h_direccion_proveedor', 100);
+            $table->string('h_telefono', 20);
+            $table->string('h_vida_util', 20);
+            $table->string('h_costo', 50);
+            $table->string('h_garantia', 50);
             /* FUENTES DE ALIMENTACION */
             $table->boolean('fa_electrica');
             $table->boolean('fa_bateria');
@@ -52,8 +53,8 @@ return new class extends Migration {
             $table->boolean('at_clase_I_IB');
             $table->boolean('at_clase_III');
             /* CLASIFICACION TECNOLOGICA */
-            $table->boolean('ct_electricos');
-            $table->boolean('ct_mecanicos');
+            $table->boolean('ct_mecanica');
+            $table->boolean('ct_hidraulica');
             $table->boolean('ct_neumatica');
             $table->boolean('ct_electrica_electronica');
             /* PLANOS */
@@ -75,6 +76,12 @@ return new class extends Migration {
             $table->text('rf_url_doc_adquisicion');
             $table->date('rf_fecha_instalacion');
             $table->date('rf_fecha_operacion');
+            /* CLASIFICACIÓN BIOMÉDICA */
+            $table->boolean('cb_apoyo_lab_clinico');
+            $table->boolean('cb_diagnostico');
+            $table->boolean('cb_soporte_mto_vida');
+            $table->boolean('cb_rehabilitacion');
+            $table->boolean('cb_prevencion');
             /* MANTENIMIENTO */
             $table->boolean('mant_preventivo');
             $table->boolean('mant_correctivo');
@@ -88,6 +95,10 @@ return new class extends Migration {
             $table->foreign('responsable_id')
                 ->references('id')
                 ->on('responsables_equipos');
+
+            $table->foreign('empresa_id')
+                ->references('id')
+                ->on('empresas');
         });
     }
 

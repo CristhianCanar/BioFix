@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departamento;
+use App\Models\Empresa;
 use App\Models\Equipo;
+use App\Models\ResponsableEquipo;
+use App\Utils\Equipos\Constants;
 use Exception;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,7 +27,25 @@ class EquipoController extends Controller
      */
     public function create()
     {
-        return view('admin.equipos.register');
+        $responsables = ResponsableEquipo::select('id', 'nombre', 'apellido')->orderBy('nombre', 'desc')->get();
+        $empresas = Empresa::select('id', 'razon_social')->orderBy('razon_social', 'desc')->get();
+        $frecuencias_calibracion = Constants::FRECUENCIA_CALIBRACION;
+        $frecuencias_mantenimiento = Constants::FRECUENCIA_MANTENIMIENTO;
+        $departamentos = Departamento::select('id_departamento', 'nombre')->get();
+        $estados_funcional = Constants::ESTADO_FUNCIONAL;
+        $mants_validacion = Constants::MANT_VALIDACION;
+        return view(
+            'admin.equipos.register',
+            compact(
+                'responsables',
+                'empresas',
+                'frecuencias_calibracion',
+                'frecuencias_mantenimiento',
+                'departamentos',
+                'estados_funcional',
+                'mants_validacion'
+            )
+        );
     }
 
     /**
@@ -31,6 +53,11 @@ class EquipoController extends Controller
      */
     public function store(Request $request)
     {
+
+        //dd($request->has('calibracion') ? true : false);
+
+        // Captura el valor del select si está habilitado
+        // $selectedOption = $enableSelect ? $request->input('options') : null;
         $request->validate([
             'codigo' => 'required|string|unique:equipos,codigo',
             'nombre' => 'required|string|max:200',
@@ -49,12 +76,12 @@ class EquipoController extends Controller
             }
 
             $equipo = Equipo::create([
-                'codigo'            => $request->codigo,
-                'nombre'            => $request->nombre,
-                'tipo_equipo'       => $request->tipo_equipo,
-                'fecha_ingreso'     => $request->fecha_ingreso,
+                'codigo' => $request->codigo,
+                'nombre' => $request->nombre,
+                'tipo_equipo' => $request->tipo_equipo,
+                'fecha_ingreso' => $request->fecha_ingreso,
                 'fecha_vencimiento' => $request->fecha_vencimiento,
-                'url_imagen'        => $imagePath,
+                'url_imagen' => $imagePath,
             ]);
 
             if (!$equipo) {
