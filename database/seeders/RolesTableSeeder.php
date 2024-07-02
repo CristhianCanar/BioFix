@@ -28,5 +28,10 @@ class RolesTableSeeder extends Seeder
         $role->name = 'Verificadora';
         $role->guard_name = 'web';
         $role->save();
+
+        $role = new Rol();
+        $role->name = 'Empresa';
+        $role->guard_name = 'web';
+        $role->save();
     }
 }
