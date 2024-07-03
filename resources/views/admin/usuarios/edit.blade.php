@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label class="form-label" for="identificacion">Identificación <span class="text-danger">*</span></label>
                         <input type="number" class="form-control @error('identificacion') is-invalid @enderror" name="identificacion"
-                            id="identificacion" value="{{ $usuario->identificacion }}" maxlength="50" required>
+                            id="identificacion" value="{{ $usuario->identificacion }}" required>
 
                         @error('identificacion')
                             <div class="invalid-feedback">

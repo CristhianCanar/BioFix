@@ -3,8 +3,8 @@
 @section('content')
     <div class="page-inner">
         <div class="col-10 mt-4 mx-auto">
-            @component('components.card-form', ['title' => 'Registrar usuario', 'show' => false])
-                <form action="{{ route('usuarios.store') }}" method="POST" class="needs-validation"
+            @component('components.card-form', ['title' => 'Registrar responsable equipo', 'show' => false])
+                <form action="{{ route('responsables_equipos.store') }}" method="POST" class="needs-validation"
                     novalidate>
                     @csrf
                     @method('POST')
@@ -46,6 +46,18 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="form-label" for="telefono">Telefono <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control @error('telefono') is-invalid @enderror" name="telefono"
+                            id="telefono" value="{{ old('telefono') }}" required>
+
+                        @error('telefono')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label" for="empresa_id">Empresa</label>
                         <select class="form-control" name="empresa_id" id="empresa_id" required>
                             <option value="" selected disabled>Seleccione...</option>
@@ -63,56 +75,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label" for="rol">Rol</label>
-                        <select class="form-control" name="rol" id="rol" required>
-                            <option value="" selected disabled>Seleccione...</option>
-                            @foreach ($roles as $rol)
-                                <option value="{{ $rol->name }}">
-                                    {{ $rol->name }}
-                                </option>
-                            @endforeach
-                        </select>
-
-                        @error('rol')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
-                            id="email" value="{{ old('email') }}" required>
-
-                        @error('email')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="password">Contraseña <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                            id="password" value="{{ old('password') }}" required>
-
-                        @error('password')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="password-confirm">Confirmar contraseña <span class="text-danger">*</span></label>
-                        <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation"
-                            id="password-confirm" required>
-                    </div>
-
                     <div class="mt-4 d-flex justify-content-between mx-2">
-                        <a href="{{ route('usuarios.index') }}" class="btn btn-default col-5" type="button">
+                        <a href="{{ route('responsables_equipos.index') }}" class="btn btn-default col-5" type="button">
                             <i class="la icon-close mr-2"></i> Cancelar
                         </a>
 

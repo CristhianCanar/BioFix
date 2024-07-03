@@ -15,6 +15,7 @@ class ResponsablesEquiposTableSeeder extends Seeder
     {
         $responsable_equipo = new ResponsableEquipo();
         $responsable_equipo->empresa_id = 1;
+        $responsable_equipo->identificacion = '0123456789';
         $responsable_equipo->nombre = 'Responsable de';
         $responsable_equipo->apellido = 'Prueba';
         $responsable_equipo->telefono = '3121234546';

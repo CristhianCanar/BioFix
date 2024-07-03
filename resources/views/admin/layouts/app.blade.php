@@ -167,6 +167,32 @@
                             </div>
                         </li>
 
+                        @can('responsables_equipos_ver')
+                            <li class="nav-item {{ request()->routeIs('responsables_equipos.*') ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#responsablesequipos">
+                                    <i class="fas fa-users"></i>
+                                    <p>Gestionar <br> responsables equi.</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ request()->routeIs('responsables_equipos.*') ? 'show' : '' }}" id="responsablesequipos">
+                                    <ul class="nav nav-collapse">
+                                        @can('responsables_equipos_registrar')
+                                            <li class="{{ request()->routeIs('responsables_equipos.create') ? 'active' : '' }}">
+                                                <a href="{{ route('responsables_equipos.create') }}">
+                                                    <span class="sub-item">Registrar responsable equipo</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        <li class="{{ request()->routeIs('responsables_equipos.index') ? 'active' : '' }}">
+                                            <a href="{{ route('responsables_equipos.index') }}">
+                                                <span class="sub-item">Gestionar responsables equipos</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @endcan
+
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
@@ -199,6 +225,39 @@
                             </div>
                         </li>
 
+                        @can('responsables_mantenimientos_ver')
+                            <li class="nav-section">
+                                <span class="sidebar-mini-icon">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <h4 class="text-section">Mantenimientos</h4>
+                            </li>
+
+                            <li class="nav-item {{ request()->routeIs('responsables_mantenimientos.*') ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#responsablesmantenimientos">
+                                    <i class="fas fa-users"></i>
+                                    <p>Gestionar <br> responsables mant.</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ request()->routeIs('responsables_mantenimientos.*') ? 'show' : '' }}" id="responsablesmantenimientos">
+                                    <ul class="nav nav-collapse">
+                                        @can('responsables_mantenimientos_registrar')
+                                            <li class="{{ request()->routeIs('responsables_mantenimientos.create') ? 'active' : '' }}">
+                                                <a href="{{ route('responsables_mantenimientos.create') }}">
+                                                    <span class="sub-item">Registrar responsable mantenimiento</span>
+                                                </a>
+                                            </li>
+                                        @endcan
+                                        <li class="{{ request()->routeIs('responsables_mantenimientos.index') ? 'active' : '' }}">
+                                            <a href="{{ route('responsables_mantenimientos.index') }}">
+                                                <span class="sub-item">Gestionar responsables mantenimientos</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @endcan
+
 
                         @can('usuarios_ver')
                             <li class="nav-section">
@@ -210,7 +269,7 @@
 
                             <li class="nav-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#usuarios">
-                                    <i class="fas fa-address-book"></i>
+                                    <i class="fas fa-users-cog"></i>
                                     <p>Gestionar usuarios</p>
                                     <span class="caret"></span>
                                 </a>

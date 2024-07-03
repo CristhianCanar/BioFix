@@ -5,21 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ResponsableEquipo extends Model
+class ResponsableMantenimiento extends Model
 {
     use HasFactory;
 
-    protected $table = 'responsables_equipos';
+    protected $table = 'responsables_mantenimientos';
     protected $fillable = [
         'empresa_id',
         'identificacion',
         'nombre',
         'apellido',
         'telefono',
+        'cargo',
     ];
-
-    public function empresas()
-    {
-        return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
-    }
 }

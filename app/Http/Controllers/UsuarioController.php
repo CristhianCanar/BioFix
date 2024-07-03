@@ -18,7 +18,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $usuarios = User::select('id', 'nombre', 'apellido', 'email')->orderBy('nombre', 'asc')->paginate(10);
+        $usuarios = User::orderBy('nombre', 'asc')->paginate(10);
         return view('admin.usuarios.manage', compact('usuarios'));
     }
 
@@ -43,7 +43,7 @@ class UsuarioController extends Controller
             'apellido' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'empresa_id' => ['numeric'],
+            'empresa_id' => ['nullable','numeric'],
             'rol' => ['required','string']
         ]);
 
@@ -66,7 +66,6 @@ class UsuarioController extends Controller
                 return $this->create();
             }
 
-            // Asignamos rol al usuario
             $rol = $usuario->assignRole($request->rol);
 
             if (!$rol) {
@@ -123,7 +122,7 @@ class UsuarioController extends Controller
             'apellido' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'empresa_id' => ['numeric'],
+            'empresa_id' => ['nullable','numeric'],
             'rol' => ['required','string']
         ]);
 
@@ -147,9 +146,7 @@ class UsuarioController extends Controller
             }
 
             $usuario = User::where('id', $id)->first();
-            // Remover rol al usuario
             $rol = $usuario->removeRole($request->rol);
-            // Asignamos rol al usuario
             $rol = $usuario->assignRole($request->rol);
 
             if (!$rol) {

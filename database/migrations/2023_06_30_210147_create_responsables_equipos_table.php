@@ -13,10 +13,12 @@ return new class extends Migration {
         Schema::create('responsables_equipos', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->smallInteger('empresa_id')->unsigned();
-            $table->string('nombre', 100);
-            $table->string('apellido', 100);
-            $table->string('telefono', 100);
+            $table->string('identificacion', 20);
+            $table->string('nombre', 50);
+            $table->string('apellido', 50);
+            $table->string('telefono', 20);
             $table->timestamps();
+            // $table->set('dependencia',['equipos','mantenimiento']);
 
             $table->foreign('empresa_id')
                 ->references('id')

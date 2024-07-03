@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('responsables_mantenimientos', function (Blueprint $table) {
             $table->smallIncrements('id');
             $table->string('identificacion', 20);
-            $table->string('nombre');
-            $table->string('apellido');
+            $table->string('nombre', 50);
+            $table->string('apellido', 50);
+            $table->string('telefono', 20);
             $table->string('cargo');
             $table->timestamps();
         });
