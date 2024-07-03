@@ -131,7 +131,7 @@ class EmpresaController extends Controller
                 'No fue posible actualizar el registro de la empresa',
                 "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
             );
-            Log::error('EmpresaController.store ->' . $e->getMessage());
+            Log::error('EmpresaController.update ->' . $e->getMessage());
             return $this->edit($id);
         }
     }
@@ -158,7 +158,7 @@ class EmpresaController extends Controller
                 'No fue posible eliminar el registro de la empresa',
                 "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
             );
-            Log::error('EmpresaController.store ->' . $e->getMessage());
+            Log::error('EmpresaController.destroy ->' . $e->getMessage());
             return $this->index();
         }
     }
