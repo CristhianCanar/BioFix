@@ -166,7 +166,8 @@ class EquipoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $equipo = Equipo::where('id', $id)->first();
+        return view('admin.equipos.show', compact('equipo'));
     }
 
     /**
@@ -314,6 +315,25 @@ class EquipoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $equipo = Equipo::where('id', $id)->delete();
+
+            if (!$equipo) {
+                Alert::error(
+                    'No fue posible eliminar el registro del equipo',
+                    'Comunicarse con soporte técnico - +573217114140'
+                );
+                return $this->index();
+            }
+            Alert::success('Eliminación del equipo completada');
+            return $this->index();
+        } catch (Exception $e) {
+            Alert::error(
+                'No fue posible eliminar el registro del equipo',
+                "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
+            );
+            Log::error('equipoController.destroy ->' . $e->getMessage());
+            return $this->index();
+        }
     }
 }
