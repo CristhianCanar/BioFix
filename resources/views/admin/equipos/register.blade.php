@@ -903,9 +903,14 @@
 
                     </div>
 
-                    <div class="form-group mt-4 mx-auto">
-                        <button class="btn btn-success w-100" type="submit"><i class="la icon-pencil mr-3"></i>
-                            Registrar</button>
+                    <div class="mt-4 d-flex justify-content-between mx-2">
+                        <a href="{{ route('equipos.index') }}" class="btn btn-default col-5" type="button">
+                            <i class="la icon-close mr-2"></i> Cancelar
+                        </a>
+
+                        <button class="btn btn-success col-5" type="submit">
+                            <i class="la icon-check mr-2"></i> Registrar
+                        </button>
                     </div>
                 </form>
             @endcomponent
