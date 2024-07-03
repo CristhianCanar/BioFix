@@ -84,4 +84,9 @@ class Equipo extends Model
         return $this->belongsTo(ResponsableEquipo::class, 'responsable_id', 'id');
     }
 
+    public function empresas()
+    {
+        return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
+    }
+
 }
