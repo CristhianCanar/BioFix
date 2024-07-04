@@ -174,16 +174,27 @@
                                     <p>Gestionar <br> responsables equi.</p>
                                     <span class="caret"></span>
                                 </a>
-                                <div class="collapse {{ request()->routeIs('responsables_equipos.*') ? 'show' : '' }}" id="responsablesequipos">
+                                <div class="collapse {{ request()->routeIs('responsables_equipos.*') ? 'show' : '' }}"
+                                    id="responsablesequipos">
                                     <ul class="nav nav-collapse">
                                         @can('responsables_equipos_registrar')
-                                            <li class="{{ request()->routeIs('responsables_equipos.create') ? 'active' : '' }}">
+                                            <li
+                                                class="{{ request()->routeIs(['responsables_equipos.create', 'responsables_equipos.store']) ? 'active' : '' }}">
                                                 <a href="{{ route('responsables_equipos.create') }}">
                                                     <span class="sub-item">Registrar responsable equipo</span>
                                                 </a>
                                             </li>
                                         @endcan
-                                        <li class="{{ request()->routeIs('responsables_equipos.index') ? 'active' : '' }}">
+                                        <li
+                                            class="{{ request()->routeIs([
+                                                'responsables_equipos.index',
+                                                'responsables_equipos.show',
+                                                'responsables_equipos.edit',
+                                                'responsables_equipos.update',
+                                                'responsables_equipos.destroy',
+                                            ])
+                                                ? 'active'
+                                                : '' }}">
                                             <a href="{{ route('responsables_equipos.index') }}">
                                                 <span class="sub-item">Gestionar responsables equipos</span>
                                             </a>
@@ -233,22 +244,34 @@
                                 <h4 class="text-section">Mantenimientos</h4>
                             </li>
 
-                            <li class="nav-item {{ request()->routeIs('responsables_mantenimientos.*') ? 'active' : '' }}">
+                            <li
+                                class="nav-item {{ request()->routeIs('responsables_mantenimientos.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#responsablesmantenimientos">
                                     <i class="fas fa-users"></i>
                                     <p>Gestionar <br> responsables mant.</p>
                                     <span class="caret"></span>
                                 </a>
-                                <div class="collapse {{ request()->routeIs('responsables_mantenimientos.*') ? 'show' : '' }}" id="responsablesmantenimientos">
+                                <div class="collapse {{ request()->routeIs('responsables_mantenimientos.*') ? 'show' : '' }}"
+                                    id="responsablesmantenimientos">
                                     <ul class="nav nav-collapse">
                                         @can('responsables_mantenimientos_registrar')
-                                            <li class="{{ request()->routeIs('responsables_mantenimientos.create') ? 'active' : '' }}">
+                                            <li
+                                                class="{{ request()->routeIs(['responsables_mantenimientos.create', 'responsables_mantenimientos.store']) ? 'active' : '' }}">
                                                 <a href="{{ route('responsables_mantenimientos.create') }}">
                                                     <span class="sub-item">Registrar responsable mantenimiento</span>
                                                 </a>
                                             </li>
                                         @endcan
-                                        <li class="{{ request()->routeIs('responsables_mantenimientos.index') ? 'active' : '' }}">
+                                        <li
+                                            class="{{ request()->routeIs([
+                                                'responsables_mantenimientos.index',
+                                                'responsables_mantenimientos.show',
+                                                'responsables_mantenimientos.edit',
+                                                'responsables_mantenimientos.update',
+                                                'responsables_mantenimientos.destroy',
+                                            ])
+                                                ? 'active'
+                                                : '' }}">
                                             <a href="{{ route('responsables_mantenimientos.index') }}">
                                                 <span class="sub-item">Gestionar responsables mantenimientos</span>
                                             </a>
@@ -273,16 +296,19 @@
                                     <p>Gestionar usuarios</p>
                                     <span class="caret"></span>
                                 </a>
-                                <div class="collapse {{ request()->routeIs('usuarios.*') ? 'show' : '' }}" id="usuarios">
+                                <div class="collapse {{ request()->routeIs('usuarios.*') ? 'show' : '' }}"
+                                    id="usuarios">
                                     <ul class="nav nav-collapse">
                                         @can('usuarios_registrar')
-                                            <li class="{{ request()->routeIs(['usuarios.create', 'usuarios.store']) ? 'active' : '' }}">
+                                            <li
+                                                class="{{ request()->routeIs(['usuarios.create', 'usuarios.store']) ? 'active' : '' }}">
                                                 <a href="{{ route('usuarios.create') }}">
                                                     <span class="sub-item">Registrar usuario</span>
                                                 </a>
                                             </li>
                                         @endcan
-                                        <li class="{{ request()->routeIs(['usuarios.index', 'usuarios.show', 'usuarios.edit', 'usuarios.update', 'usuarios.destroy']) ? 'active' : '' }}">
+                                        <li
+                                            class="{{ request()->routeIs(['usuarios.index', 'usuarios.show', 'usuarios.edit', 'usuarios.update', 'usuarios.destroy']) ? 'active' : '' }}">
                                             <a href="{{ route('usuarios.index') }}">
                                                 <span class="sub-item">Gestionar usuarios</span>
                                             </a>

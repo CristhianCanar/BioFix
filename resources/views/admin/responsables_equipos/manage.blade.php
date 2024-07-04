@@ -9,7 +9,7 @@
                     <th scope="col">Identificación</th>
                     <th scope="col">Nombres</th>
                     <th scope="col">Apellidos</th>
-                    <th scope="col">telefono</th>
+                    <th scope="col">Teléfono</th>
                     <th scope="col">Empresa</th>
                     <th scope="col" class="text-right">Acciones</th>
                 @endslot
