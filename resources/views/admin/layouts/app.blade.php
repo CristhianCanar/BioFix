@@ -148,7 +148,7 @@
                         <li class="nav-item {{ request()->routeIs('equipos.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#equipos">
                                 <i class="fas fa-ruler-combined"></i>
-                                <p>Gestionar equipos</p>
+                                <p>Equipos</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse {{ request()->routeIs('equipos.*') ? 'show' : '' }}" id="equipos">
@@ -171,7 +171,7 @@
                             <li class="nav-item {{ request()->routeIs('responsables_equipos.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#responsablesequipos">
                                     <i class="fas fa-users"></i>
-                                    <p>Gestionar <br> responsables equi.</p>
+                                    <p>Responsables de equipos</p>
                                     <span class="caret"></span>
                                 </a>
                                 <div class="collapse {{ request()->routeIs('responsables_equipos.*') ? 'show' : '' }}"
@@ -214,7 +214,7 @@
                         <li class="nav-item {{ request()->routeIs('empresas.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#empresas">
                                 <i class="fas fa-industry"></i>
-                                <p>Gestionar empresas</p>
+                                <p>Empresas</p>
                                 <span class="caret"></span>
                             </a>
                             <div class="collapse {{ request()->routeIs('empresas.*') ? 'show' : '' }}"
@@ -248,7 +248,7 @@
                                 class="nav-item {{ request()->routeIs('responsables_mantenimientos.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#responsablesmantenimientos">
                                     <i class="fas fa-users"></i>
-                                    <p>Gestionar <br> responsables mant.</p>
+                                    <p>Responsables mant.</p>
                                     <span class="caret"></span>
                                 </a>
                                 <div class="collapse {{ request()->routeIs('responsables_mantenimientos.*') ? 'show' : '' }}"
@@ -293,7 +293,7 @@
                             <li class="nav-item {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#usuarios">
                                     <i class="fas fa-users-cog"></i>
-                                    <p>Gestionar usuarios</p>
+                                    <p>Usuarios</p>
                                     <span class="caret"></span>
                                 </a>
                                 <div class="collapse {{ request()->routeIs('usuarios.*') ? 'show' : '' }}"
