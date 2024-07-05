@@ -21,15 +21,15 @@
                                 <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
                                     <div class="px-2 pb-2 pb-md-0 text-center">
                                         <div id="circles-1"></div>
-                                        <h6 class="fw-bold mt-3 mb-0">Número de interacciones</h6>
+                                        <h6 class="fw-bold mt-3 mb-0">Equipos activos</h6>
                                     </div>
                                     <div class="px-2 pb-2 pb-md-0 text-center">
                                         <div id="circles-2"></div>
-                                        <h6 class="fw-bold mt-3 mb-0">Fincas registradas</h6>
+                                        <h6 class="fw-bold mt-3 mb-0">Mantenimientos realizados</h6>
                                     </div>
                                     <div class="px-2 pb-2 pb-md-0 text-center">
                                         <div id="circles-3"></div>
-                                        <h6 class="fw-bold mt-3 mb-0">Usuarios registrados</h6>
+                                        <h6 class="fw-bold mt-3 mb-0">Equipos dados de baja</h6>
                                     </div>
                                 </div>
                             </div>
@@ -43,10 +43,10 @@
         Circles.create({
             id: 'circles-1',
             radius: 80,
-            value: {{($interactionsTotal == null ) ? 1 : $interactionsTotal }},
+            value: {{($equiposTotal == null ) ? 1 : $equiposTotal }},
             maxValue: 100,
             width: 7,
-            text: {{($interactionsTotal == null ) ? 1 : $interactionsTotal }},
+            text: {{($equiposTotal == null ) ? 1 : $equiposTotal }},
             colors: ['#f1f1f1', '#FF9E27'],
             duration: 400,
             wrpClass: 'circles-wrp',
@@ -58,10 +58,10 @@
         Circles.create({
             id: 'circles-2',
             radius: 80,
-            value: {{($fincasTotal == null ) ? 1 : $fincasTotal }},
+            value: {{($mantenimientosTotal == null ) ? 1 : $mantenimientosTotal }},
             maxValue: 100,
             width: 7,
-            text: {{($fincasTotal == null ) ? 1 : $fincasTotal }},
+            text: {{($mantenimientosTotal == null ) ? 1 : $mantenimientosTotal }},
             colors: ['#f1f1f1', '#1572E8'],
             duration: 400,
             wrpClass: 'circles-wrp',
@@ -73,10 +73,10 @@
         Circles.create({
             id: 'circles-3',
             radius: 80,
-            value: {{($usersTotal == null ) ? 1 : $usersTotal }},
+            value: {{($equiposBajasTotal == null ) ? 1 : $equiposBajasTotal }},
             maxValue: 100,
             width: 7,
-            text: {{($usersTotal == null ) ? 1 : $usersTotal }},
+            text: {{($equiposBajasTotal == null ) ? 1 : $equiposBajasTotal }},
             colors: ['#f1f1f1', '#F25961'],
             duration: 400,
             wrpClass: 'circles-wrp',
