@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Mantenimientos\MantenimientoStoreRequest;
 use App\Models\Equipo;
+use App\Models\Mantenimiento;
+use App\Models\RepuestoMantenimiento;
 use App\Models\ResponsableMantenimiento;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -26,7 +29,7 @@ class MantenimientoController extends Controller
                 $imagePath = $request->url_imagen->storeAs('img_mantenimientos', $imageName, 'public');
             }
 
-            $equipo = Equipo::create([
+            $mantenimiento = Mantenimiento::create([
                 'responsable_id' => $request->responsable_id,
                 'equipo_id' => $request->equipo_id,
                 'retiro_equipo_IPS' => $request->retiro_equipo_IPS,
@@ -51,18 +54,40 @@ class MantenimientoController extends Controller
                 'm_tiempo_usado' => $request->m_tiempo_usado,
             ]);
 
-            if (!$equipo) {
+            if (!$mantenimiento) {
                 Alert::error(
-                    'No fue posible actualizar el registro del equipo',
+                    'No fue posible registrar el mantenimiento',
                     'Comunicarse con soporte técnico - +573217114140'
                 );
                 return $this->createMantenimiento();
             }
-            Alert::success('Actualización del equipo completada', "$request->nombre actualizado con éxito");
+
+            $repuestos = null;
+            if ($request->repuestos[0]['repuesto'] != null) {
+                $repuestos = $request->repuestos;
+                foreach ($repuestos as $repuesto) {
+                    $storeRepuesto = RepuestoMantenimiento::create([
+                        'mantenimiento_id' => $mantenimiento->id,
+                        'fecha_reporte' => $repuesto['fecha_reporte'],
+                        'repuesto' => $repuesto['repuesto'],
+                        'proveedor' => $repuesto['proveedor'],
+                        'cantidad' => $repuesto['cantidad'],
+                    ]);
+                    if (!$storeRepuesto) {
+                        Alert::error(
+                            'No fue posible registrar el mantenimiento',
+                            'Comunicarse con soporte técnico - +573217114140'
+                        );
+                        return $this->createMantenimiento();
+                    }
+                }
+            }
+            Alert::success('Registro del mantenimiento completo', 'Mantenimiento realizado al equipo: '.$mantenimiento->equipos->nombre);
             return $this->createMantenimiento();
         } catch (Exception $e) {
+            DB::rollBack();
             Alert::error(
-                'No fue posible actualizar el registro del equipo',
+                'No fue posible registrar el mantenimiento',
                 "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
             );
             Log::error('MantenimientoController.storeMantenimiento -> '.$e->getMessage());

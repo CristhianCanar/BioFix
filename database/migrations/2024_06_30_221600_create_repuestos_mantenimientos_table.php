@@ -15,8 +15,8 @@ return new class extends Migration
             $table->smallIncrements('id');
             $table->bigInteger('mantenimiento_id')->unsigned();
             $table->date('fecha_reporte');
-            $table->string('repuesto');
-            $table->string('proveedor');
+            $table->string('repuesto', 100);
+            $table->string('proveedor', 100);
             $table->smallInteger('cantidad')->unsigned();
             $table->timestamps();
 

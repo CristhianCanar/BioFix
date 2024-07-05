@@ -4,19 +4,20 @@
     <div class="page-inner">
         <div class="col-10 mt-4 mx-auto">
             @component('components.card-form', ['title' => 'Registrar mantenimiento', 'show' => false])
-                <form action="{{ route('mantenimientos.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation"
-                    novalidate>
+                <form action="{{ route('mantenimientos.store') }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @method('POST')
                     <div class="form-row justify-content-center">
                         <div class="form-group col-12">
-                            <label class="form-label" for="text">Seleccione equipo <span class="text-danger">*</span></label>
+                            <label class="form-label" for="text">Seleccione equipo ( Serie - Nombre - Modelo )
+                                <span class="text-danger">*</span>
+                            </label>
                             <select class="form-control" name="equipo_id" id="equipo_id" required>
                                 <option value="" selected disabled>Seleccione...</option>
                                 @foreach ($equipos as $equipo)
                                     <option value="{{ $equipo->id }}">
-                                        Serie:{{ $equipo->serie }} - Nombre: {{ $equipo->nombre }} - Modelo:
-                                        {{ $equipo->modelo }}
+                                        {{ $equipo->serie }} - {{ $equipo->nombre }} - {{ $equipo->modelo }}
                                     </option>
                                 @endforeach
                             </select>
@@ -28,6 +29,18 @@
                         </div>
                     </div>
                     <div class="form-row justify-content-center">
+                        <div class="form-group col-12 col-md-4">
+                            <label class="form-label" for="text">Fecha mantenimiento
+                                <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control @error('fecha_mantenimiento') is-invalid @enderror"
+                                name="fecha_mantenimiento" id="fecha_mantenimiento" value="{{ old('fecha_mantenimiento') }}"
+                                required>
+                            @error('fecha_mantenimiento')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="form-check col-12 col-md-4 d-flex align-items-center mt-4">
                             <label class="form-check-label">
                                 <input type="checkbox" class="form-check-input @error('retiro_equipo_IPS') is-invalid @enderror"
@@ -51,18 +64,6 @@
                                         class="text-danger">*</span></span>
                             </label>
                             @error('equipo_funcionando')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-12 col-md-4">
-                            <label class="form-label" for="text">Fecha mantenimiento
-                                <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control @error('fecha_mantenimiento') is-invalid @enderror"
-                                name="fecha_mantenimiento" id="fecha_mantenimiento" value="{{ old('fecha_mantenimiento') }}"
-                                required>
-                            @error('fecha_mantenimiento')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -129,14 +130,14 @@
                                             Nombre repuesto
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="repuestos[0][repuesto]">
+                                        <input type="text" class="form-control" name="repuestos[0][repuesto]" maxlength="100">
                                     </div>
                                     <div class="form-group col-4 col-md-3">
                                         <label class="form-label" for="text">
                                             Nombre proveedor
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <input type="text" class="form-control" name="repuestos[0][proveedor]">
+                                        <input type="text" class="form-control" name="repuestos[0][proveedor]" maxlength="100">
                                     </div>
                                     <div class="form-group col-2 col-md-3">
                                         <label class="form-label" for="text">
@@ -201,8 +202,10 @@
                         </div>
                         <div class="form-check col-12 col-md-3 d-flex align-items-center">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input @error('vf_estructura_soporte') is-invalid @enderror"
-                                    name="vf_estructura_soporte" id="vf_estructura_soporte" {{ old('vf_estructura_soporte') ? 'checked' : '' }}>
+                                <input type="checkbox"
+                                    class="form-check-input @error('vf_estructura_soporte') is-invalid @enderror"
+                                    name="vf_estructura_soporte" id="vf_estructura_soporte"
+                                    {{ old('vf_estructura_soporte') ? 'checked' : '' }}>
                                 <span class="form-check-sign">
                                     ¿El equipo tiene estructura de soporte?
                                     <span class="text-danger">*</span>
@@ -218,8 +221,10 @@
                     <div class="form-row justify-content-center">
                         <div class="form-check col-12 col-md-4 d-flex align-items-center">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input @error('vf_integridad_rosca_tapa') is-invalid @enderror"
-                                    name="vf_integridad_rosca_tapa" id="vf_integridad_rosca_tapa" {{ old('vf_integridad_rosca_tapa') ? 'checked' : '' }}>
+                                <input type="checkbox"
+                                    class="form-check-input @error('vf_integridad_rosca_tapa') is-invalid @enderror"
+                                    name="vf_integridad_rosca_tapa" id="vf_integridad_rosca_tapa"
+                                    {{ old('vf_integridad_rosca_tapa') ? 'checked' : '' }}>
                                 <span class="form-check-sign">
                                     ¿La integridad de la rosca es correcta?
                                     <span class="text-danger">*</span>
@@ -233,8 +238,10 @@
                         </div>
                         <div class="form-check col-12 col-md-4 d-flex align-items-center">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input @error('vf_revision_limpieza_tanque') is-invalid @enderror"
-                                    name="vf_revision_limpieza_tanque" id="vf_revision_limpieza_tanque" {{ old('vf_revision_limpieza_tanque') ? 'checked' : '' }}>
+                                <input type="checkbox"
+                                    class="form-check-input @error('vf_revision_limpieza_tanque') is-invalid @enderror"
+                                    name="vf_revision_limpieza_tanque" id="vf_revision_limpieza_tanque"
+                                    {{ old('vf_revision_limpieza_tanque') ? 'checked' : '' }}>
                                 <span class="form-check-sign">
                                     ¿Revisión de la limpieza de tanque?
                                     <span class="text-danger">*</span>
@@ -250,8 +257,10 @@
                     <div class="form-row justify-content-center">
                         <div class="form-check col-12 col-md-4 d-flex align-items-center">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input @error('vf_revision_fuga_gas') is-invalid @enderror"
-                                    name="vf_revision_fuga_gas" id="vf_revision_fuga_gas" {{ old('vf_revision_fuga_gas') ? 'checked' : '' }}>
+                                <input type="checkbox"
+                                    class="form-check-input @error('vf_revision_fuga_gas') is-invalid @enderror"
+                                    name="vf_revision_fuga_gas" id="vf_revision_fuga_gas"
+                                    {{ old('vf_revision_fuga_gas') ? 'checked' : '' }}>
                                 <span class="form-check-sign">
                                     ¿Revisión fuga de gas?
                                     <span class="text-danger">*</span>
@@ -265,8 +274,10 @@
                         </div>
                         <div class="form-check col-12 col-md-4 d-flex align-items-center">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input @error('vf_condicion_entorno') is-invalid @enderror"
-                                    name="vf_condicion_entorno" id="vf_condicion_entorno" {{ old('vf_condicion_entorno') ? 'checked' : '' }}>
+                                <input type="checkbox"
+                                    class="form-check-input @error('vf_condicion_entorno') is-invalid @enderror"
+                                    name="vf_condicion_entorno" id="vf_condicion_entorno"
+                                    {{ old('vf_condicion_entorno') ? 'checked' : '' }}>
                                 <span class="form-check-sign">
                                     ¿Condiciones de entorno (Humedad, temperatura)?
                                     <span class="text-danger">*</span>
@@ -287,8 +298,10 @@
                     <div class="form-row justify-content-center">
                         <div class="form-check col-12 col-md-4 d-flex align-items-center">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input @error('m_limpieza_externa') is-invalid @enderror"
-                                    name="m_limpieza_externa" id="m_limpieza_externa" {{ old('m_limpieza_externa') ? 'checked' : '' }}>
+                                <input type="checkbox"
+                                    class="form-check-input @error('m_limpieza_externa') is-invalid @enderror"
+                                    name="m_limpieza_externa" id="m_limpieza_externa"
+                                    {{ old('m_limpieza_externa') ? 'checked' : '' }}>
                                 <span class="form-check-sign">
                                     ¿Limpieza externa?
                                     <span class="text-danger">*</span>
@@ -302,8 +315,10 @@
                         </div>
                         <div class="form-check col-12 col-md-4 d-flex align-items-center">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input @error('m_limpieza_interna') is-invalid @enderror"
-                                    name="m_limpieza_interna" id="m_limpieza_interna" {{ old('m_limpieza_interna') ? 'checked' : '' }}>
+                                <input type="checkbox"
+                                    class="form-check-input @error('m_limpieza_interna') is-invalid @enderror"
+                                    name="m_limpieza_interna" id="m_limpieza_interna"
+                                    {{ old('m_limpieza_interna') ? 'checked' : '' }}>
                                 <span class="form-check-sign">
                                     ¿Limpieza interna?
                                     <span class="text-danger">*</span>
@@ -333,9 +348,11 @@
                             @enderror
                         </div>
                         <div class="form-group col-12 col-md-4">
-                            <label class="form-label" for="text">Tiempo usado (minutos) <span class="text-danger">*</span></label>
-                            <input type="number" class="form-control @error('m_tiempo_usado') is-invalid @enderror" name="m_tiempo_usado"
-                                id="m_tiempo_usado" value="{{ old('m_tiempo_usado') }}" min="1" required>
+                            <label class="form-label" for="text">Tiempo usado (minutos) <span
+                                    class="text-danger">*</span></label>
+                            <input type="number" class="form-control @error('m_tiempo_usado') is-invalid @enderror"
+                                name="m_tiempo_usado" id="m_tiempo_usado" value="{{ old('m_tiempo_usado') }}"
+                                min="1" required>
                             @error('m_tiempo_usado')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -348,11 +365,13 @@
                         <h2><b>Responsable</b></h2>
                     </div>
                     <div class="form-row justify-content-center">
-                        <p><b>Quien recibe y compromete a realizar la actividad necesaria para que el equipo este limpio y desinfectado</b></p>
+                        <p><b>Quien recibe y compromete a realizar la actividad necesaria para que el equipo este limpio y
+                                desinfectado</b></p>
                     </div>
                     <div class="form-row justify-content-center">
                         <div class="form-group col-12">
-                            <label class="form-label" for="text">Seleccione responsable <span class="text-danger">*</span></label>
+                            <label class="form-label" for="text">Seleccione responsable <span
+                                    class="text-danger">*</span></label>
                             <select class="form-control" name="responsable_id" id="responsable_id" required>
                                 <option value="" selected disabled>Seleccione...</option>
                                 @foreach ($responsables as $responsable)
@@ -395,28 +414,28 @@
                                 Fecha reporte
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="date" class="form-control" name="repuestos[0][fecha_reporte]">
+                            <input type="date" class="form-control" name="repuestos[${index}][fecha_reporte]">
                         </div>
                         <div class="form-group col-4 col-md-3">
                             <label class="form-label" for="text">
                                 Nombre repuesto
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" class="form-control" name="repuestos[0][repuesto]">
+                            <input type="text" class="form-control" name="repuestos[${index}][repuesto]">
                         </div>
                         <div class="form-group col-4 col-md-3">
                             <label class="form-label" for="text">
                                 Nombre proveedor
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" class="form-control" name="repuestos[0][proveedor]">
+                            <input type="text" class="form-control" name="repuestos[${index}][proveedor]">
                         </div>
                         <div class="form-group col-2 col-md-3">
                             <label class="form-label" for="text">
                                 Cantidad
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="number" class="form-control" name="repuestos[0][cantidad]" min="1">
+                            <input type="number" class="form-control" name="repuestos[${index}][cantidad]" min="1">
                         </div>
                     </div>`
                 );

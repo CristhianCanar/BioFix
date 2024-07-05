@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('retiro_equipo_IPS');
             $table->boolean('equipo_funcionando');
             $table->date('fecha_mantenimiento');
-            $table->text('url_imagen');
+            $table->text('url_imagen')->nullable();
             /* VERIFICACION BIOSEGURIDAD */
             $table->boolean('vb_pregunta_uno');
             $table->boolean('vb_pregunta_dos');

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Mantenimientos;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class MantenimientoStoreRequest extends FormRequest
 {
@@ -27,7 +29,7 @@ class MantenimientoStoreRequest extends FormRequest
             'retiro_equipo_IPS' => 'boolean',
             'equipo_funcionando' => 'boolean',
             'fecha_mantenimiento' => 'required|date',
-            'url_imagen' => 'required|string|max:200',
+            'url_imagen' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
             'vb_pregunta_uno' => 'boolean',
             'vb_pregunta_dos' => 'boolean',
             'vf_carcasa' => 'boolean',
@@ -41,6 +43,11 @@ class MantenimientoStoreRequest extends FormRequest
             'm_limpieza_interna' => 'boolean',
             'm_ajustes' => 'boolean',
             'm_tiempo_usado' => 'required|numeric',
+            /* Lista de repuestos */
+            'repuestos.*.fecha_reporte' => 'nullable|string|date',
+            'repuestos.*.repuesto' => 'nullable|string|max:100',
+            'repuestos.*.proveedor' => 'nullable|string|max:100',
+            'repuestos.*.cantidad' => 'nullable|integer|min:1',
         ];
     }
     protected function prepareForValidation()
@@ -61,5 +68,18 @@ class MantenimientoStoreRequest extends FormRequest
             'm_limpieza_interna' => $this->boolean('m_limpieza_interna'),
             'm_ajustes' => $this->boolean('m_ajustes'),
         ]);
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json(
+                [
+                    'message'   => 'Error en el formulario: ' . $validator->errors(),
+                    'status'    => 'error',
+                ],
+                422
+            )
+        );
     }
 }
