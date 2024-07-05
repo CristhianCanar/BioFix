@@ -5,7 +5,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -86,6 +87,7 @@ return new class extends Migration {
             $table->boolean('mant_preventivo');
             $table->boolean('mant_correctivo');
             $table->enum('mant_validacion', Constants::MANT_VALIDACION);
+            $table->boolean('estado')->default(true);
             $table->timestamps();
 
             $table->foreign('municipio_id')

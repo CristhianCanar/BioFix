@@ -145,24 +145,38 @@
                             <h4 class="text-section">Equipos</h4>
                         </li>
 
-                        <li class="nav-item {{ request()->routeIs('equipos.*') ? 'active' : '' }}">
+                        <li class="nav-item {{ request()->routeIs(['equipos.*', 'unsubscribe.*']) ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#equipos">
                                 <i class="fas fa-ruler-combined"></i>
                                 <p>Equipos</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse {{ request()->routeIs('equipos.*') ? 'show' : '' }}" id="equipos">
+                            <div class="collapse {{ request()->routeIs(['equipos.*', 'unsubscribe.*']) ? 'show' : '' }}"
+                                id="equipos">
                                 <ul class="nav nav-collapse">
-                                    <li class="{{ request()->routeIs('equipos.create') ? 'active' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs(['equipos.create', 'equipos.store']) ? 'active' : '' }}">
                                         <a href="{{ route('equipos.create') }}">
                                             <span class="sub-item">Registrar equipo</span>
                                         </a>
                                     </li>
-                                    <li class="{{ request()->routeIs('equipos.index') ? 'active' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs(['equipos.index', 'equipos.show', 'equipos.edit', 'equipos.update', 'equipos.destroy'])
+                                            ? 'active'
+                                            : '' }}">
                                         <a href="{{ route('equipos.index') }}">
                                             <span class="sub-item">Gestionar equipos</span>
                                         </a>
                                     </li>
+
+                                    @can('dar_de_baja_ver')
+                                        <li
+                                            class="{{ request()->routeIs(['unsubscribe.index', 'unsubscribe.show']) ? 'active' : '' }}">
+                                            <a href="{{ route('unsubscribe.index') }}">
+                                                <span class="sub-item">Equipos dados de baja</span>
+                                            </a>
+                                        </li>
+                                    @endcan
                                 </ul>
                             </div>
                         </li>

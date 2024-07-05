@@ -23,30 +23,33 @@
                             <td class="text-truncate">{{ $equipo->empresas->razon_social }}</td>
                             <td>
                                 <div class="row float-right justify-content-end" style="font-size: 20px">
-                                    <div class="col-3">
-                                        <a href="{{ route('equipos.edit', $equipo->id) }}"
-                                            style="color: #5C55BF;">
-                                            <i class="la icon-note" data-toggle="tooltip"
-                                                title="Editar equipo"></i>
+                                    <div class="col-2">
+                                        <a href="{{ route('equipos.edit', $equipo->id) }}" style="color: #5C55BF;">
+                                            <i class="la icon-note" data-toggle="tooltip" title="Editar equipo"></i>
                                         </a>
                                     </div>
-                                    <div class="col-3">
-                                        <a href="{{ route('equipos.show', $equipo->id) }}"
-                                            style="color: #fa8c15;">
-                                            <i class="la icon-eye" data-toggle="tooltip"
-                                                title="Ver equipo"></i>
+                                    <div class="col-2">
+                                        <a href="{{ route('equipos.show', $equipo->id) }}" style="color: #fa8c15;">
+                                            <i class="la icon-eye" data-toggle="tooltip" title="Ver equipo"></i>
                                         </a>
                                     </div>
-                                    <div class="col-3 mr-1">
-                                        <form action="{{ route('equipos.destroy', $equipo->id) }}"
-                                            method="POST">
+
+                                    @can('dar_de_baja_ver')
+                                        <div class="col-2">
+                                            <a href="{{ route('unsubscribe.create', $equipo->id) }}" style="color: #f44336;">
+                                                <i class="la icon-close" data-toggle="tooltip" title="Dar de baja equipo"></i>
+                                            </a>
+                                        </div>
+                                    @endcan
+
+                                    <div class="col-2 mr-1">
+                                        <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-light p-0"
                                                 onclick="return confirm('Seguro que desea eliminar el registro del equipo?')">
-                                                <i class="la icon-trash" data-toggle="tooltip"
-                                                    data-placement="top" title="Eliminar equipo"
-                                                    style="font-size: 20px; color: #f44336;"></i>
+                                                <i class="la icon-trash" data-toggle="tooltip" data-placement="top"
+                                                    title="Eliminar equipo" style="font-size: 20px; color: #f44336;"></i>
                                             </button>
                                         </form>
                                     </div>
