@@ -146,7 +146,7 @@
                         </li>
                         <li class="nav-item {{ request()->routeIs('mantenimientos.*') ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#mantenimientos">
-                                <i class="fas fa8c15"></i>
+                                <i class="fas fa-cogs"></i>
                                 <p>Mantenimientos</p>
                                 <span class="caret"></span>
                             </a>
