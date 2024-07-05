@@ -4,6 +4,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\EquipoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\ResponsableEquipoController;
 use App\Http\Controllers\ResponsableMantenimientoController;
 use App\Http\Controllers\UsuarioController;
@@ -90,8 +91,19 @@ Route::middleware(['auth','can:empresas_ver'])->group(function (){
     Route::resource('empresas', EmpresaController::class);
 });
 
+/**
+ * Equipos
+ */
 Route::middleware('auth')->group(function () {
     Route::resource('equipos', EquipoController::class);
     Route::get('empresas/municipios/{departamento_id}', [EmpresaController::class, 'getMunicipios'])->name('empresas.get_municipios');
 
+});
+
+/**
+ * Matenimientos
+ */
+Route::middleware('auth')->group(function () {
+    Route::get('mantenimientos', [MantenimientoController::class, 'createMantenimiento'])->name('mantenimientos.create');
+    Route::post('mantenimientos', [MantenimientoController::class, 'storeMantenimiento'])->name('mantenimientos.store');
 });

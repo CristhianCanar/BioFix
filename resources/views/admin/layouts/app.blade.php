@@ -142,6 +142,29 @@
                             <span class="sidebar-mini-icon">
                                 <i class="fa fa-ellipsis-h"></i>
                             </span>
+                            <h4 class="text-section">Mantenimientos</h4>
+                        </li>
+                        <li class="nav-item {{ request()->routeIs('mantenimientos.*') ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#mantenimientos">
+                                <i class="fas fa-cogs"></i>
+                                <p>Mantenimientos</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse {{ request()->routeIs('mantenimientos.*') ? 'show' : '' }}" id="mantenimientos">
+                                <ul class="nav nav-collapse">
+                                    <li class="{{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
+                                        <a href="{{ route('mantenimientos.create') }}">
+                                            <span class="sub-item">Registrar mantenimiento</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
                             <h4 class="text-section">Equipos</h4>
                         </li>
 
