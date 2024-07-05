@@ -16,13 +16,8 @@ return new class extends Migration
             $table->bigInteger('equipo_id')->unsigned();
             $table->text('evaluacion_tecnica');
             $table->text('evaluacion_clinica');
-            $table->boolean('baja_garantia_proveedor');
-            $table->boolean('baja_mal_uso');
-            $table->boolean('baja_hurto');
-            $table->boolean('baja_obsoleto');
-            $table->boolean('baja_siniestro');
-            $table->boolean('baja_venta');
-            $table->boolean('baja_donacion');
+            $table->string('baja_motivo', 50);
+            $table->date('baja_fecha');
             $table->text('observaciones');
             $table->text('clausula');/* Compromiso de quien da de baja */
             $table->timestamps();

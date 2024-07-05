@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\ResponsableEquipoController;
 use App\Http\Controllers\ResponsableMantenimientoController;
+use App\Http\Controllers\UnsubscribeController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
 
 /* Dashboard Module */
 Route::get('/',          [HomeController::class, 'index'])->middleware('auth');
@@ -36,7 +38,7 @@ Route::middleware('auth')->group(function () {
 /**
  * Usuarios
  */
-Route::middleware(['auth','can:usuarios_ver'])->name('usuarios.')->group(function (){
+Route::middleware(['auth', 'can:usuarios_ver'])->name('usuarios.')->group(function () {
     Route::get('/usuarios', [UsuarioController::class, 'index'])->name('index');
 
     Route::get('/usuario/create', [UsuarioController::class, 'create'])->middleware(['can:usuarios_registrar'])->name('create');
@@ -53,7 +55,7 @@ Route::middleware(['auth','can:usuarios_ver'])->name('usuarios.')->group(functio
 /**
  * Responsables equipos
  */
-Route::middleware(['auth','can:responsables_equipos_ver'])->name('responsables_equipos.')->group(function (){
+Route::middleware(['auth', 'can:responsables_equipos_ver'])->name('responsables_equipos.')->group(function () {
     Route::get('/responsables_equipos', [ResponsableEquipoController::class, 'index'])->name('index');
 
     Route::get('/responsable_equipo/create', [ResponsableEquipoController::class, 'create'])->middleware(['can:responsables_equipos_registrar'])->name('create');
@@ -70,7 +72,7 @@ Route::middleware(['auth','can:responsables_equipos_ver'])->name('responsables_e
 /**
  * Responsables mantenimientos
  */
-Route::middleware(['auth','can:responsables_mantenimientos_ver'])->name('responsables_mantenimientos.')->group(function (){
+Route::middleware(['auth', 'can:responsables_mantenimientos_ver'])->name('responsables_mantenimientos.')->group(function () {
     Route::get('/responsables_mantenimientos', [ResponsableMantenimientoController::class, 'index'])->name('index');
 
     Route::get('/responsable_mantenimiento/create', [ResponsableMantenimientoController::class, 'create'])->middleware(['can:responsables_mantenimientos_registrar'])->name('create');
@@ -87,7 +89,7 @@ Route::middleware(['auth','can:responsables_mantenimientos_ver'])->name('respons
 /**
  * Empresas
  */
-Route::middleware(['auth','can:empresas_ver'])->group(function (){
+Route::middleware(['auth', 'can:empresas_ver'])->group(function () {
     Route::resource('empresas', EmpresaController::class);
 });
 
@@ -97,7 +99,18 @@ Route::middleware(['auth','can:empresas_ver'])->group(function (){
 Route::middleware('auth')->group(function () {
     Route::resource('equipos', EquipoController::class);
     Route::get('empresas/municipios/{departamento_id}', [EmpresaController::class, 'getMunicipios'])->name('empresas.get_municipios');
+});
 
+/**
+ * Dar de baja
+ */
+Route::middleware(['auth', 'can:dar_de_baja_ver'])->name('unsubscribe.')->group(function () {
+    Route::get('/unsubscribe', [UnsubscribeController::class, 'index'])->middleware(['can:equipos_dar_de_baja'])->name('index');
+
+    Route::get('/unsubscribe/{equipoId}/create', [UnsubscribeController::class, 'create'])->middleware(['can:dar_de_baja_registrar'])->name('create');
+    Route::post('/unsubscribe/{equipoId}', [UnsubscribeController::class, 'store'])->middleware(['can:dar_de_baja_registrar'])->name('store');
+
+    Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('show');
 });
 
 /**

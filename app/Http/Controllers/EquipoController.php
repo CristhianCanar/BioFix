@@ -20,7 +20,7 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        $equipos = Equipo::orderBy('nombre', 'asc')->paginate(2);
+        $equipos = Equipo::orderBy('nombre', 'asc')->where('estado', 1)->paginate(10);
         return view('admin.equipos.manage', compact('equipos'));
     }
 
@@ -156,7 +156,7 @@ class EquipoController extends Controller
                 'No fue posible almacenar el registro del equipo',
                 "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
             );
-            Log::error('EquipoController.store -> '.$e->getMessage());
+            Log::error('EquipoController.store -> ' . $e->getMessage());
             return $this->create();
         }
     }
@@ -305,7 +305,7 @@ class EquipoController extends Controller
                 'No fue posible actualizar el registro del equipo',
                 "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
             );
-            Log::error('EquipoController.update -> '.$e->getMessage());
+            Log::error('EquipoController.update -> ' . $e->getMessage());
             return $this->edit($id);
         }
     }
