@@ -62,7 +62,7 @@
                     <div class="form-row justify-content-center">
                         <div class="form-check col-12 col-md-4 d-flex align-items-center mt-4">
                             <label class="form-check-label">
-                                <input type="checkbox" class="form-check-input" onclick="cambiarEstadoSelectFrecCalibracion()"
+                                <input type="checkbox" class="form-check-input"
                                     {{ $equipo->calibracion ? 'checked' : '' }} disabled>
                                 <span class="form-check-sign">Necesita calibración</span>
                             </label>

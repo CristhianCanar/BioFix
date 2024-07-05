@@ -119,4 +119,5 @@ Route::middleware(['auth', 'can:dar_de_baja_ver'])->name('unsubscribe.')->group(
 Route::middleware('auth')->group(function () {
     Route::get('mantenimientos', [MantenimientoController::class, 'createMantenimiento'])->name('mantenimientos.create');
     Route::post('mantenimientos', [MantenimientoController::class, 'storeMantenimiento'])->name('mantenimientos.store');
+    Route::get('mantenimientos/{equipoId}', [MantenimientoController::class, 'showMantenimientoByEquipoId'])->name('mantenimientos.show.equipo');
 });

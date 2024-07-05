@@ -94,4 +94,8 @@ class MantenimientoController extends Controller
             return $this->createMantenimiento();
         }
     }
+    public function showMantenimientoByEquipoId(string $equipoId) {
+        $mantenimientos = Mantenimiento::where('equipo_id', $equipoId)->orderBy('created_at', 'asc')->get();
+        return view('admin.mantenimientos.show', compact('mantenimientos'));
+    }
 }

@@ -42,6 +42,12 @@
                                         </div>
                                     @endcan
 
+                                    <div class="col-2">
+                                        <a href="{{ route('mantenimientos.show.equipo', $equipo->id) }}" style="color: #fa8c15;">
+                                            <i class="la icon-settings" data-toggle="tooltip" title="Ver mantenimientos"></i>
+                                        </a>
+                                    </div>
+
                                     <div class="col-2 mr-1">
                                         <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST">
                                             @csrf

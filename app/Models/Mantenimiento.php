@@ -41,4 +41,9 @@ class Mantenimiento extends Model
     {
         return $this->belongsTo(Equipo::class, 'equipo_id', 'id');
     }
+
+    public function repuestos()
+    {
+        return $this->hasMany(RepuestoMantenimiento::class, 'mantenimiento_id', 'id');
+    }
 }
