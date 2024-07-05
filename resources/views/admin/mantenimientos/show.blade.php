@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-inner">
-        <h1 class="text-center"><b>Detalles de mantenimientos baja</b></h1>
+        <h1 class="text-center"><b>Detalles de mantenimientos</b></h1>
         @foreach ($mantenimientos as $mantenimiento)
             <div class="col-10 mt-4 mx-auto">
                 @component('components.card-form', ['title' => 'Mantenimiento N°' . $loop->iteration])

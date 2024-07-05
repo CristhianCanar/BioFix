@@ -144,15 +144,18 @@
                             </span>
                             <h4 class="text-section">Mantenimientos</h4>
                         </li>
-                        <li class="nav-item {{ request()->routeIs('mantenimientos.*') ? 'active' : '' }}">
+                        <li
+                            class="nav-item {{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#mantenimientos">
                                 <i class="fas fa-cogs"></i>
                                 <p>Mantenimientos</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse {{ request()->routeIs('mantenimientos.*') ? 'show' : '' }}" id="mantenimientos">
+                            <div class="collapse {{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'show' : '' }}"
+                                id="mantenimientos">
                                 <ul class="nav nav-collapse">
-                                    <li class="{{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
+                                    <li
+                                        class="{{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
                                         <a href="{{ route('mantenimientos.create') }}">
                                             <span class="sub-item">Registrar mantenimiento</span>
                                         </a>
@@ -168,13 +171,14 @@
                             <h4 class="text-section">Equipos</h4>
                         </li>
 
-                        <li class="nav-item {{ request()->routeIs(['equipos.*', 'unsubscribe.*']) ? 'active' : '' }}">
+                        <li
+                            class="nav-item {{ request()->routeIs(['equipos.*', 'unsubscribe.*', 'mantenimientos.show.equipo']) ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#equipos">
                                 <i class="fas fa-ruler-combined"></i>
                                 <p>Equipos</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse {{ request()->routeIs(['equipos.*', 'unsubscribe.*']) ? 'show' : '' }}"
+                            <div class="collapse {{ request()->routeIs(['equipos.*', 'unsubscribe.*', 'mantenimientos.show.equipo']) ? 'show' : '' }}"
                                 id="equipos">
                                 <ul class="nav nav-collapse">
                                     <li
@@ -184,7 +188,17 @@
                                         </a>
                                     </li>
                                     <li
-                                        class="{{ request()->routeIs(['equipos.index', 'equipos.show', 'equipos.edit', 'equipos.update', 'equipos.destroy'])
+                                        class="{{ request()->routeIs([
+                                            'equipos.index',
+                                            'equipos.show',
+                                            'equipos.edit',
+                                            'equipos.update',
+                                            'equipos.destroy',
+                                            'mantenimientos.show.equipo',
+                                            'unsubscribe.create',
+                                            'unsubscribe.store',
+                                            'unsubscribe.show',
+                                        ])
                                             ? 'active'
                                             : '' }}">
                                         <a href="{{ route('equipos.index') }}">

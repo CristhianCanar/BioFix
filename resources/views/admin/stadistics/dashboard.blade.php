@@ -1,13 +1,17 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <div class="page-inner py-5">
-        <div class="mt-2 mb-4">
-            <h2 class="text-white pb-2">Welcome back, Hizrian!</h2>
-            <h5 class="text-white op-7 mb-4">Yesterday I was clever, so I wanted to change the world. Today I am wise, so I am changing myself.</h5>
+    <div class="panel-header bg-dark-gradient">
+        <div class="page-inner py-5">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                <div>
+                    <h2 class="text-white pb-2 fw-bold">BioFix</h2>
+                    <h5 class="text-white op-7 mb-2">Gestión de mantenimiento de equipos médicos</h5>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="page-inner">
+    <div class="page-inner mt--5">
         <div class="row justify-content-center">
             <div class="col">
                 <div class="row mt--2">

@@ -11,6 +11,7 @@
                     <th scope="col">Serie</th>
                     <th scope="col">Marca</th>
                     <th scope="col">Empresa</th>
+                    <th scope="col">Estado</th>
                     <th scope="col" class="text-right">Acciones</th>
                 @endslot
                 @slot('tbody')
@@ -21,6 +22,7 @@
                             <td class="text-truncate">{{ $equipo->serie }}</td>
                             <td class="text-truncate">{{ $equipo->marca }}</td>
                             <td class="text-truncate">{{ $equipo->empresas->razon_social }}</td>
+                            <td class="text-truncate">{{ $equipo->estado ? 'Activo' : 'Inactivo' }}</td>
                             <td>
                                 <div class="row float-right justify-content-end" style="font-size: 20px">
                                     <div class="col-2">
