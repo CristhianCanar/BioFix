@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
         $user->identificacion   = '0123456789';
         $user->nombre           = 'Interventor';
         $user->apellido         = 'Prueba';
-        $user->email            = 'intervento@gmail.com';
+        $user->email            = 'interventor@gmail.com';
         $user->password         = Hash::make('biofix2024');
         $user->save();
 
