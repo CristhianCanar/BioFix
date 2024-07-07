@@ -89,7 +89,7 @@ Route::middleware(['auth'])->name('responsables_mantenimientos.')->group(functio
  * Empresas
  */
 Route::middleware(['auth'])->group(function () {
-    Route::resource('empresas', EmpresaController::class);
+    Route::resource('empresas', EmpresaController::class)->middleware(['can:empresa_gestionar','can:empresa_registrar']);
 });
 
 /**
