@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div class="form-row justify-content-center">
-                        <div class="form-group col-12 col-md-4">
+                        <div class="form-group col-12 col-md-6">
                             <label class="form-label" for="text">Código ECRI <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('codigo_ECRI') is-invalid @enderror"
                                 name="codigo_ECRI" id="codigo_ECRI" value="{{ old('codigo_ECRI') }}" maxlength="100" required>
@@ -97,7 +97,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group col-12 col-md-4">
+                        <div class="form-group col-12 col-md-6">
                             <label class="form-label" for="text">Empresa <span class="text-danger">*</span></label>
                             <select class="form-control" name="empresa_id" id="empresa_id" required>
                                 <option value="" selected disabled>Seleccione...</option>
@@ -108,18 +108,6 @@
                                 @endforeach
                             </select>
                             @error('empresa_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-12 col-md-4">
-                            <label class="form-label" for="text">Número documento</label>
-                            <input type="text" class="form-control @error('numero_documento') is-invalid @enderror"
-                                name="numero_documento" id="numero_documento" value="{{ old('numero_documento') }}"
-                                maxlength="100" required>
-                            @error('numero_documento')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -739,7 +727,7 @@
                     </div>
                     <div class="form-row justify-content-center">
                         <div class="form-group col-12 col-md-10">
-                            <label class="form-label" for="text">URL documento adquisición <span
+                            <label class="form-label" for="text">Documento adquisición <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('rf_url_doc_adquisicion') is-invalid @enderror"
                                 name="rf_url_doc_adquisicion" id="rf_url_doc_adquisicion"

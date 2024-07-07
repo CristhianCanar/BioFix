@@ -72,6 +72,8 @@ class Equipo extends Model
         'mant_preventivo',
         'mant_correctivo',
         'mant_validacion',
+        'estado',
+        'observacion_baja',
     ];
 
     public function municipios()

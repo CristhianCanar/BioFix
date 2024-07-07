@@ -23,7 +23,6 @@ class EquiposTableSeeder extends Seeder
             "servicio" => 'Servicio 1',
             "ubicacion" => 'Carrera 11',
             "codigo_ECRI" => '001',
-            "numero_documento" => '1234567890',
             "calibracion" => '1',
             "frecuencia_calibracion" => 'Bimestral',
             "frecuencia_mantenimiento" => 'Anual',

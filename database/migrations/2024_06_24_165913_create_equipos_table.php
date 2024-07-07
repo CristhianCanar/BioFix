@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('servicio', 200)->nullable();
             $table->string('ubicacion', 200);
             $table->string('codigo_ECRI', 100);
-            $table->string('numero_documento', 100)->nullable();
+            /* $table->string('numero_documento', 100)->nullable(); */
             $table->boolean('calibracion');
             $table->enum('frecuencia_calibracion', Constants::FRECUENCIA_CALIBRACION)->nullable();
             $table->enum('frecuencia_mantenimiento', Constants::FRECUENCIA_CALIBRACION);
@@ -88,6 +88,7 @@ return new class extends Migration
             $table->boolean('mant_correctivo');
             $table->enum('mant_validacion', Constants::MANT_VALIDACION);
             $table->boolean('estado')->default(true);
+            $table->text('observacion_baja')->nullable();
             $table->timestamps();
 
             $table->foreign('municipio_id')

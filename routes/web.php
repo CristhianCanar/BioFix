@@ -111,6 +111,11 @@ Route::middleware(['auth', 'can:dar_de_baja_ver'])->name('unsubscribe.')->group(
     Route::post('/unsubscribe/{equipoId}', [UnsubscribeController::class, 'store'])->middleware(['can:dar_de_baja_registrar'])->name('store');
 
     Route::get('/unsubscribe/{id}', [UnsubscribeController::class, 'show'])->name('show');
+
+    Route::get('/observations', [UnsubscribeController::class, 'indexObservation'])->name('index.observation');
+    Route::get('/observation/{id}', [UnsubscribeController::class, 'showObservation'])->name('show.observation');
+    Route::get('/observation/equipo/{id}', [UnsubscribeController::class, 'createObservation'])->name('create.observation');
+    Route::post('/observation/equipo/{equipoId}', [UnsubscribeController::class, 'storeObservation'])->name('store.observation');
 });
 
 /**

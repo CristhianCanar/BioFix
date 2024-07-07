@@ -85,4 +85,54 @@ class UnsubscribeController extends Controller
         $bajaEquipo = BajaEquipo::where('id', $id)->first();
         return view('admin.dar_de_baja_equipos.show', compact('bajaEquipo'));
     }
+
+    public function indexObservation()
+    {
+        $equipos = Equipo::where('observacion_baja','!=', null)->paginate(10);
+        return view('admin.dar_de_baja_equipos.manage_observartion', compact('equipos'));
+    }
+
+    public function showObservation(int $id)
+    {
+        $equipo = Equipo::where('id', $id)->first();
+        return view('admin.dar_de_baja_equipos.show_observation', compact('equipo'));
+    }
+    
+    public function createObservation(int $id)
+    {
+        $equipo = Equipo::where('id', $id)->first();
+        return view('admin.dar_de_baja_equipos.register_observation', compact('equipo'));
+    }
+
+    public function storeObservation(Request $request, int $equipoId)
+    {
+        $request->validate([
+            'observacion_baja' => ['required', 'string'],
+        ]);
+
+        try {
+            $equipo = Equipo::where('id', $equipoId)->update([
+                'observacion_baja' => $request->observacion_baja
+            ]);
+
+            if (!$equipo) {
+                Alert::error(
+                    'No fue posible almacenar el registro de la observación para dar de baja al equipo',
+                    'Comunicarse con soporte técnico - +573217114140'
+                );
+                return $this->createObservation($equipoId);
+            }
+
+            Alert::success('Registro de la observación para dar de baja completo', "Almacenado con éxito");
+            return redirect()->route('equipos.index');
+        } catch (Exception $e) {
+            Alert::error(
+                'No fue posible almacenar el registro de la observación para dar de baja al equipo',
+                "Comunicarse con soporte técnico - +573217114140. Error: " . $e->getMessage()
+            );
+
+            Log::error('UnsubscribeController.storeObservation ->' . $e->getMessage());
+            return $this->createObservation($equipoId);
+        }
+    }
 }

@@ -198,11 +198,20 @@
                                             'unsubscribe.create',
                                             'unsubscribe.store',
                                             'unsubscribe.show',
+                                            'unsubscribe.create.observation',
+                                            'unsubscribe.store.observation',
                                         ])
                                             ? 'active'
                                             : '' }}">
                                         <a href="{{ route('equipos.index') }}">
                                             <span class="sub-item">Gestionar equipos</span>
+                                        </a>
+                                    </li>
+
+                                    <li
+                                        class="{{ request()->routeIs(['unsubscribe.index.observation', 'unsubscribe.show.observation']) ? 'active' : '' }}">
+                                        <a href="{{ route('unsubscribe.index.observation') }}">
+                                            <span class="sub-item" data-toggle="tooltip" title="Equipos a los cuales se les ha registrado observaciones para ser dados de baja">Equipos con observaciones</span>
                                         </a>
                                     </li>
 
