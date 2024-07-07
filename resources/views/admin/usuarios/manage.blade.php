@@ -22,7 +22,7 @@
                             <td class="text-truncate">{{ str_replace('[','',str_replace(']','',$usuario->getRoleNames())) }}</td>
                             <td>
                                 <div class="row float-right justify-content-end" style="font-size: 20px">
-                                    @can('usuarios_editar')
+                                    @can('users_editar')
                                         <div class="col-3">
                                             <a href="{{ route('usuarios.edit', $usuario->id) }}"
                                                 style="color: #5C55BF;">
@@ -38,7 +38,7 @@
                                                 title="Ver usuario"></i>
                                         </a>
                                     </div>
-                                    @can('usuarios_eliminar')
+                                    @can('users_eliminar')
                                         <div class="col-3 mr-1">
                                             <form action="{{ route('usuarios.destroy', $usuario->id) }}"
                                                 method="POST">

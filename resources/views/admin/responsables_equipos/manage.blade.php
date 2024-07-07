@@ -24,7 +24,7 @@
                             <td class="text-truncate">{{ $responsableEquipo->empresas->razon_social }}</td>
                             <td>
                                 <div class="row float-right justify-content-end" style="font-size: 20px">
-                                    @can('responsables_equipos_editar')
+                                    @can('responsable_equipo_editar')
                                         <div class="col-3">
                                             <a href="{{ route('responsables_equipos.edit', $responsableEquipo->id) }}"
                                                 style="color: #5C55BF;">
@@ -40,7 +40,7 @@
                                                 title="Ver responsable"></i>
                                         </a>
                                     </div>
-                                    @can('responsables_equipos_eliminar')
+                                    @can('responsable_equipo_eliminar')
                                         <div class="col-3 mr-1">
                                             <form action="{{ route('responsables_equipos.destroy', $responsableEquipo->id) }}"
                                                 method="POST">

@@ -26,6 +26,33 @@ class UsersTableSeeder extends Seeder
         $user = new User();
         $user->empresa_id       = 1;
         $user->identificacion   = '0123456789';
+        $user->nombre           = 'Biomedico';
+        $user->apellido         = 'Prueba';
+        $user->email            = 'biomedico@gmail.com';
+        $user->password         = Hash::make('biofix2024');
+        $user->save();
+
+        $user = new User();
+        $user->empresa_id       = 1;
+        $user->identificacion   = '0123456789';
+        $user->nombre           = 'Interventor';
+        $user->apellido         = 'Prueba';
+        $user->email            = 'intervento@gmail.com';
+        $user->password         = Hash::make('biofix2024');
+        $user->save();
+
+        $user = new User();
+        $user->empresa_id       = 1;
+        $user->identificacion   = '0123456789';
+        $user->nombre           = 'Verificadora';
+        $user->apellido         = 'Prueba';
+        $user->email            = 'verificadora@gmail.com';
+        $user->password         = Hash::make('biofix2024');
+        $user->save();
+
+        $user = new User();
+        $user->empresa_id       = 1;
+        $user->identificacion   = '0123456789';
         $user->nombre           = 'Empresa';
         $user->apellido         = 'Prueba';
         $user->email            = 'empresa@gmail.com';

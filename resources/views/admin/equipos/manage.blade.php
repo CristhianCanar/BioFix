@@ -24,49 +24,55 @@
                             <td class="text-truncate">{{ $equipo->empresas->razon_social }}</td>
                             <td class="text-truncate">{{ $equipo->estado ? 'Activo' : 'Inactivo' }}</td>
                             <td>
-                                <div class="row float-right justify-content-end no-gutters" style="font-size: 20px">
-                                    <div class="col-2 px-2">
-                                        <a href="{{ route('equipos.show', $equipo->id) }}" style="color: #fa8c15;">
-                                            <i class="la icon-eye" data-toggle="tooltip" title="Ver equipo"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-2 px-2">
-                                        <a href="{{ route('mantenimientos.show.equipo', $equipo->id) }}" style="color: #fa8c15;">
-                                            <i class="la icon-settings" data-toggle="tooltip" title="Ver mantenimientos"></i>
-                                        </a>
-                                    </div>
-
-                                    <div class="col-2 px-2">
-                                        <a href="{{ route('equipos.edit', $equipo->id) }}" style="color: #5C55BF;">
-                                            <i class="la icon-note" data-toggle="tooltip" title="Editar equipo"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-2 px-2">
-                                        <a href="{{ route('unsubscribe.create.observation', $equipo->id) }}" style="color: #5C55BF;">
-                                            <i class="la icon-arrow-down-circle" data-toggle="tooltip" title="Agregar observación para dar de baja"></i>
-                                        </a>
-                                    </div>
-
-                                    @can('dar_de_baja_ver')
-                                        <div class="col-2 px-2">
+                                <div class="row float-right justify-content-end" style="font-size: 20px">
+                                    @can('equipo_ver')
+                                        <div class="col-2">
+                                            <a href="{{ route('equipos.show', $equipo->id) }}" style="color: #fa8c15;">
+                                                <i class="la icon-eye" data-toggle="tooltip" title="Ver equipo"></i>
+                                            </a>
+                                        </div>
+                                    @endcan
+                                    @can('mantenimiento_ver')
+                                        <div class="col-2">
+                                            <a href="{{ route('mantenimientos.show.equipo', $equipo->id) }}" style="color: #fa8c15;">
+                                                <i class="la icon-settings" data-toggle="tooltip" title="Ver mantenimientos"></i>
+                                            </a>
+                                        </div>
+                                    @endcan
+                                    @can('equipo_editar')
+                                        <div class="col-2">
+                                            <a href="{{ route('equipos.edit', $equipo->id) }}" style="color: #5C55BF;">
+                                                <i class="la icon-note" data-toggle="tooltip" title="Editar equipo"></i>
+                                            </a>
+                                        </div>
+                                    @endcan
+                                    @can('observacion_dar_baja_registrar')
+                                        <div class="col-2">
+                                            <a href="{{ route('unsubscribe.create.observation', $equipo->id) }}" style="color: #5C55BF;">
+                                                <i class="la icon-arrow-down-circle" data-toggle="tooltip" title="Agregar observación para dar de baja"></i>
+                                            </a>
+                                        </div>
+                                    @endcan
+                                    @can('dar_baja_registrar')
+                                        <div class="col-2">
                                             <a href="{{ route('unsubscribe.create', $equipo->id) }}" style="color: #f44336;">
                                                 <i class="la icon-close" data-toggle="tooltip" title="Dar de baja equipo"></i>
                                             </a>
                                         </div>
                                     @endcan
-
-
-                                    <div class="col-2 px-2">
-                                        <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-light p-0"
-                                                onclick="return confirm('Seguro que desea eliminar el registro del equipo?')">
-                                                <i class="la icon-trash" data-toggle="tooltip" data-placement="top"
-                                                    title="Eliminar equipo" style="font-size: 20px; color: #f44336;"></i>
-                                            </button>
-                                        </form>
-                                    </div>
+                                    @can('equipo_eliminar')
+                                        <div class="col-2">
+                                            <form action="{{ route('equipos.destroy', $equipo->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-light p-0"
+                                                    onclick="return confirm('Seguro que desea eliminar el registro del equipo?')">
+                                                    <i class="la icon-trash" data-toggle="tooltip" data-placement="top"
+                                                        title="Eliminar equipo" style="font-size: 20px; color: #f44336;"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    @endcan
                                 </div>
                             </td>
                         </tr>

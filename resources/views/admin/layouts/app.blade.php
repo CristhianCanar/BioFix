@@ -123,46 +123,48 @@
             <div class="sidebar-wrapper scrollbar scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav nav-primary">
+                        @can('tablero')
+                            <li class="nav-section">
+                                <span class="sidebar-mini-icon">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <h4 class="text-section">Estadísticas</h4>
+                            </li>
 
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Estadísticas</h4>
-                        </li>
-
-                        <li class="nav-item {{ request()->is(['dashboard', '/']) ? 'active' : '' }}">
-                            <a href="{{ route('dashboard') }}">
-                                <i class="fas fa-home"></i>
-                                <p>Tablero</p>
-                            </a>
-                        </li>
-
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Mantenimientos</h4>
-                        </li>
-                        <li
-                            class="nav-item {{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
-                            <a data-toggle="collapse" href="#mantenimientos">
-                                <i class="fas fa-cogs"></i>
-                                <p>Mantenimientos</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse {{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'show' : '' }}"
-                                id="mantenimientos">
-                                <ul class="nav nav-collapse">
-                                    <li
-                                        class="{{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
-                                        <a href="{{ route('mantenimientos.create') }}">
-                                            <span class="sub-item">Registrar mantenimiento</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                            <li class="nav-item {{ request()->is(['dashboard', '/']) ? 'active' : '' }}">
+                                <a href="{{ route('dashboard') }}">
+                                    <i class="fas fa-home"></i>
+                                    <p>Tablero</p>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('mantenimiento_gestionar')
+                            <li class="nav-section">
+                                <span class="sidebar-mini-icon">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <h4 class="text-section">Mantenimientos</h4>
+                            </li>
+                            <li
+                                class="nav-item {{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#mantenimientos">
+                                    <i class="fas fa-cogs"></i>
+                                    <p>Mantenimientos</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'show' : '' }}"
+                                    id="mantenimientos">
+                                    <ul class="nav nav-collapse">
+                                        <li
+                                            class="{{ request()->routeIs(['mantenimientos.create', 'mantenimientos.store']) ? 'active' : '' }}">
+                                            <a href="{{ route('mantenimientos.create') }}">
+                                                <span class="sub-item">Registrar mantenimiento</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @endcan
 
                         <li class="nav-section">
                             <span class="sidebar-mini-icon">
@@ -170,7 +172,6 @@
                             </span>
                             <h4 class="text-section">Equipos</h4>
                         </li>
-
                         <li
                             class="nav-item {{ request()->routeIs(['equipos.*', 'unsubscribe.*', 'mantenimientos.show.equipo']) ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#equipos">
@@ -181,12 +182,14 @@
                             <div class="collapse {{ request()->routeIs(['equipos.*', 'unsubscribe.*', 'mantenimientos.show.equipo']) ? 'show' : '' }}"
                                 id="equipos">
                                 <ul class="nav nav-collapse">
-                                    <li
-                                        class="{{ request()->routeIs(['equipos.create', 'equipos.store']) ? 'active' : '' }}">
-                                        <a href="{{ route('equipos.create') }}">
-                                            <span class="sub-item">Registrar equipo</span>
-                                        </a>
-                                    </li>
+                                    @can('equipo_registrar')
+                                        <li
+                                            class="{{ request()->routeIs(['equipos.create', 'equipos.store']) ? 'active' : '' }}">
+                                            <a href="{{ route('equipos.create') }}">
+                                                <span class="sub-item">Registrar equipo</span>
+                                            </a>
+                                        </li>
+                                    @endcan
                                     <li
                                         class="{{ request()->routeIs([
                                             'equipos.index',
@@ -208,14 +211,18 @@
                                         </a>
                                     </li>
 
-                                    <li
-                                        class="{{ request()->routeIs(['unsubscribe.index.observation', 'unsubscribe.show.observation']) ? 'active' : '' }}">
-                                        <a href="{{ route('unsubscribe.index.observation') }}">
-                                            <span class="sub-item" data-toggle="tooltip" title="Equipos a los cuales se les ha registrado observaciones para ser dados de baja">Equipos con observaciones</span>
-                                        </a>
-                                    </li>
+                                    @can('observacion_dar_baja_gestionar')
+                                        <li
+                                            class="{{ request()->routeIs(['unsubscribe.index.observation', 'unsubscribe.show.observation']) ? 'active' : '' }}">
+                                            <a href="{{ route('unsubscribe.index.observation') }}">
+                                                <span class="sub-item" data-toggle="tooltip"
+                                                    title="Equipos a los cuales se les ha registrado observaciones para ser dados de baja">Equipos
+                                                    con observaciones</span>
+                                            </a>
+                                        </li>
+                                    @endcan
 
-                                    @can('dar_de_baja_ver')
+                                    @can('dar_baja_gestionar')
                                         <li
                                             class="{{ request()->routeIs(['unsubscribe.index', 'unsubscribe.show']) ? 'active' : '' }}">
                                             <a href="{{ route('unsubscribe.index') }}">
@@ -227,7 +234,7 @@
                             </div>
                         </li>
 
-                        @can('responsables_equipos_ver')
+                        @can('responsable_equipo_gestionar')
                             <li class="nav-item {{ request()->routeIs('responsables_equipos.*') ? 'active' : '' }}">
                                 <a data-toggle="collapse" href="#responsablesequipos">
                                     <i class="fas fa-users"></i>
@@ -237,7 +244,7 @@
                                 <div class="collapse {{ request()->routeIs('responsables_equipos.*') ? 'show' : '' }}"
                                     id="responsablesequipos">
                                     <ul class="nav nav-collapse">
-                                        @can('responsables_equipos_registrar')
+                                        @can('responsable_equipo_registrar')
                                             <li
                                                 class="{{ request()->routeIs(['responsables_equipos.create', 'responsables_equipos.store']) ? 'active' : '' }}">
                                                 <a href="{{ route('responsables_equipos.create') }}">
@@ -263,40 +270,40 @@
                                 </div>
                             </li>
                         @endcan
+                        @can('empresa_gestionar')
+                            <li class="nav-section">
+                                <span class="sidebar-mini-icon">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </span>
+                                <h4 class="text-section">Empresas</h4>
+                            </li>
 
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Empresas</h4>
-                        </li>
-
-                        <li class="nav-item {{ request()->routeIs('empresas.*') ? 'active' : '' }}">
-                            <a data-toggle="collapse" href="#empresas">
-                                <i class="fas fa-industry"></i>
-                                <p>Empresas</p>
-                                <span class="caret"></span>
-                            </a>
-                            <div class="collapse {{ request()->routeIs('empresas.*') ? 'show' : '' }}"
-                                id="empresas">
-                                <ul class="nav nav-collapse">
-                                    <li
-                                        class="{{ request()->routeIs(['empresas.create', 'empresas.store']) ? 'active' : '' }}">
-                                        <a href="{{ route('empresas.create') }}">
-                                            <span class="sub-item">Registrar empresa</span>
-                                        </a>
-                                    </li>
-                                    <li
-                                        class="{{ request()->routeIs(['empresas.index', 'empresas.show', 'empresas.edit', 'empresas.update', 'empresas.destroy']) ? 'active' : '' }}">
-                                        <a href="{{ route('empresas.index') }}">
-                                            <span class="sub-item">Gestionar empresas</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        @can('responsables_mantenimientos_ver')
+                            <li class="nav-item {{ request()->routeIs('empresas.*') ? 'active' : '' }}">
+                                <a data-toggle="collapse" href="#empresas">
+                                    <i class="fas fa-industry"></i>
+                                    <p>Empresas</p>
+                                    <span class="caret"></span>
+                                </a>
+                                <div class="collapse {{ request()->routeIs('empresas.*') ? 'show' : '' }}"
+                                    id="empresas">
+                                    <ul class="nav nav-collapse">
+                                        <li
+                                            class="{{ request()->routeIs(['empresas.create', 'empresas.store']) ? 'active' : '' }}">
+                                            <a href="{{ route('empresas.create') }}">
+                                                <span class="sub-item">Registrar empresa</span>
+                                            </a>
+                                        </li>
+                                        <li
+                                            class="{{ request()->routeIs(['empresas.index', 'empresas.show', 'empresas.edit', 'empresas.update', 'empresas.destroy']) ? 'active' : '' }}">
+                                            <a href="{{ route('empresas.index') }}">
+                                                <span class="sub-item">Gestionar empresas</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        @endcan
+                        @can('responsable_mantenimiento_gestionar')
                             <li class="nav-section">
                                 <span class="sidebar-mini-icon">
                                     <i class="fa fa-ellipsis-h"></i>
@@ -314,7 +321,7 @@
                                 <div class="collapse {{ request()->routeIs('responsables_mantenimientos.*') ? 'show' : '' }}"
                                     id="responsablesmantenimientos">
                                     <ul class="nav nav-collapse">
-                                        @can('responsables_mantenimientos_registrar')
+                                        @can('responsable_mantenimiento_registrar')
                                             <li
                                                 class="{{ request()->routeIs(['responsables_mantenimientos.create', 'responsables_mantenimientos.store']) ? 'active' : '' }}">
                                                 <a href="{{ route('responsables_mantenimientos.create') }}">
@@ -340,9 +347,7 @@
                                 </div>
                             </li>
                         @endcan
-
-
-                        @can('usuarios_ver')
+                        @can('users_gestionar')
                             <li class="nav-section">
                                 <span class="sidebar-mini-icon">
                                     <i class="fa fa-ellipsis-h"></i>
@@ -359,7 +364,7 @@
                                 <div class="collapse {{ request()->routeIs('usuarios.*') ? 'show' : '' }}"
                                     id="usuarios">
                                     <ul class="nav nav-collapse">
-                                        @can('usuarios_registrar')
+                                        @can('users_registrar')
                                             <li
                                                 class="{{ request()->routeIs(['usuarios.create', 'usuarios.store']) ? 'active' : '' }}">
                                                 <a href="{{ route('usuarios.create') }}">
@@ -377,7 +382,6 @@
                                 </div>
                             </li>
                         @endcan
-
                     </ul>
                 </div>
             </div>
