@@ -117,35 +117,34 @@
                     <div class="row">
                         <div class="col-10">
                             <div id="repuestos-container">
-                                <div class="form-row justify-content-center repuesto">
-                                    <div class="form-group col-3 col-md-3">
-                                        <label class="form-label" for="text">
-                                            Fecha reporte
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input type="date" class="form-control" name="repuestos[0][fecha_reporte]">
+                                <div class="repuesto">
+                                    <div class="form-row justify-content-center">
+                                        <div class="form-group col-6 col-md-3">
+                                            <label class="form-label" for="text">
+                                                Fecha reporte
+                                            </label>
+                                            <input type="date" class="form-control" name="repuestos[0][fecha_reporte]">
+                                        </div>
+                                        <div class="form-group col-6 col-md-3">
+                                            <label class="form-label" for="text">
+                                                Nombre repuesto
+                                            </label>
+                                            <input type="text" class="form-control" name="repuestos[0][repuesto]" maxlength="100">
+                                        </div>
+                                        <div class="form-group col-6 col-md-3">
+                                            <label class="form-label" for="text">
+                                                Nombre proveedor
+                                            </label>
+                                            <input type="text" class="form-control" name="repuestos[0][proveedor]" maxlength="100">
+                                        </div>
+                                        <div class="form-group col-6 col-md-3">
+                                            <label class="form-label" for="text">
+                                                Cantidad
+                                            </label>
+                                            <input type="number" class="form-control" name="repuestos[0][cantidad]" min="1">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-4 col-md-3">
-                                        <label class="form-label" for="text">
-                                            Nombre repuesto
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control" name="repuestos[0][repuesto]" maxlength="100">
-                                    </div>
-                                    <div class="form-group col-4 col-md-3">
-                                        <label class="form-label" for="text">
-                                            Nombre proveedor
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control" name="repuestos[0][proveedor]" maxlength="100">
-                                    </div>
-                                    <div class="form-group col-2 col-md-3">
-                                        <label class="form-label" for="text">
-                                            Cantidad
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <input type="number" class="form-control" name="repuestos[0][cantidad]" min="1">
-                                    </div>
+                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -408,35 +407,34 @@
 
             $('#add-repuesto').click(function() {
                 $('#repuestos-container').append(
-                    `<div class="form-row justify-content-center repuesto">
-                        <div class="form-group col-3 col-md-3">
-                            <label class="form-label" for="text">
-                                Fecha reporte
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="date" class="form-control" name="repuestos[${index}][fecha_reporte]">
+                    `<div class="repuesto">
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-6 col-md-3">
+                                <label class="form-label" for="text">
+                                    Fecha reporte
+                                </label>
+                                <input type="date" class="form-control" name="repuestos[${index}][fecha_reporte]">
+                            </div>
+                            <div class="form-group col-6 col-md-3">
+                                <label class="form-label" for="text">
+                                    Nombre repuesto
+                                </label>
+                                <input type="text" class="form-control" name="repuestos[${index}][repuesto]" maxlength="100">
+                            </div>
+                            <div class="form-group col-6 col-md-3">
+                                <label class="form-label" for="text">
+                                    Nombre proveedor
+                                </label>
+                                <input type="text" class="form-control" name="repuestos[${index}][proveedor]" maxlength="100">
+                            </div>
+                            <div class="form-group col-6 col-md-3">
+                                <label class="form-label" for="text">
+                                    Cantidad
+                                </label>
+                                <input type="number" class="form-control" name="repuestos[${index}][cantidad]" min="1">
+                            </div>
                         </div>
-                        <div class="form-group col-4 col-md-3">
-                            <label class="form-label" for="text">
-                                Nombre repuesto
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control" name="repuestos[${index}][repuesto]">
-                        </div>
-                        <div class="form-group col-4 col-md-3">
-                            <label class="form-label" for="text">
-                                Nombre proveedor
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control" name="repuestos[${index}][proveedor]">
-                        </div>
-                        <div class="form-group col-2 col-md-3">
-                            <label class="form-label" for="text">
-                                Cantidad
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="number" class="form-control" name="repuestos[${index}][cantidad]" min="1">
-                        </div>
+                        <hr>
                     </div>`
                 );
                 index++;
