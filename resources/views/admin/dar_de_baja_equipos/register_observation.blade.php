@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-inner">
-        <div class="col-10 mt-4 mx-auto">
+        <div class="col-12 col-md-10 mt-4 mx-auto">
             @component('components.card-form', [
                 'title' => 'Registrar observación para dar de baja al equipo',
                 'show' => false,
@@ -46,11 +46,11 @@
                         </div>
                     </div>
 
-                    <div class="mt-4 d-flex justify-content-between mx-2">
-                        <a href="{{ route('equipos.index') }}" class="btn btn-default col-5" type="button">
+                    <div class="row mt-4 justify-content-between mx-2">
+                        <a href="{{ route('equipos.index') }}" class="btn btn-default col-12 col-md-5 mt-2 " type="button">
                             <i class="la icon-close mr-2"></i> Cancelar
                         </a>
-                        <button class="btn btn-success col-5" type="submit">
+                        <button class="btn btn-success col-12 col-md-5 mt-2 " type="submit">
                             <i class="la icon-check mr-2"></i> Registrar
                         </button>
                     </div>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-inner">
-        <div class="col-10 mt-4 mx-auto">
+        <div class="col-12 col-md-10 mt-4 mx-auto">
             @component('components.card-form', [
                 'title' => 'Ver observaciones para dar de baja al equipo',
                 'show' => true,

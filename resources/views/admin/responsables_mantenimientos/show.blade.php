@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-inner">
-        <div class="col-10 mt-4 mx-auto">
+        <div class="col-12 col-md-10 mt-4 mx-auto">
             @component('components.card-form', ['title' => 'Detalles responsable mantenimiento'])
                 <div class="form-group">
                     <label class="form-label" for="departamento_id">Identificación</label>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="page-inner">
-        <div class="col-10 mt-4 mx-auto">
+        <div class="col-12 col-md-10 mt-4 mx-auto">
             @component('components.card-form', ['title' => 'Actualizar empresa', 'show' => false])
                 <form action="{{ route('empresas.update', ['empresa' => $empresa->id]) }}" method="POST"
                     enctype="multipart/form-data" class="needs-validation" novalidate>

@@ -55,6 +55,10 @@
     <link href="{{ asset('atlantis/assets/css/atlantis.css') }}" rel="stylesheet">
     <!-- Estilos personalizados -->
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <style>
+        .form-group label, .form-check label {
+            white-space: normal; }
+    </style>
 </head>
 
 <body>
