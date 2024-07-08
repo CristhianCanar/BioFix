@@ -16,7 +16,7 @@ class EmpresasTableSeeder extends Seeder
         $empresa = new Empresa();
         $empresa->municipio_id    = 703;
         $empresa->nit             = '1234567-9';
-        $empresa->razon_social    = 'Prueba 1';
+        $empresa->razon_social    = 'IPS Prueba';
         $empresa->numero_contrato = 'Prueba';
         $empresa->direccion       = 'Prueba';
         $empresa->telefono        = '3121234567';
@@ -24,7 +24,7 @@ class EmpresasTableSeeder extends Seeder
         $empresa = new Empresa();
         $empresa->municipio_id    = 703;
         $empresa->nit             = '1234567-9';
-        $empresa->razon_social    = 'Prueba 2';
+        $empresa->razon_social    = 'ESE 1 Prueba';
         $empresa->numero_contrato = 'Prueba';
         $empresa->direccion       = 'Prueba';
         $empresa->telefono        = '3121234567';
@@ -32,7 +32,7 @@ class EmpresasTableSeeder extends Seeder
         $empresa = new Empresa();
         $empresa->municipio_id    = 703;
         $empresa->nit             = '1234567-9';
-        $empresa->razon_social    = 'Prueba 3';
+        $empresa->razon_social    = 'ESE 2 Prueba';
         $empresa->numero_contrato = 'Prueba';
         $empresa->direccion       = 'Prueba';
         $empresa->telefono        = '3121234567';

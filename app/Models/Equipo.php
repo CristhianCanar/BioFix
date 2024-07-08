@@ -19,7 +19,6 @@ class Equipo extends Model
         'servicio',
         'ubicacion',
         'codigo_ECRI',
-        'numero_documento',
         'calibracion',
         'frecuencia_calibracion',
         'frecuencia_mantenimiento',

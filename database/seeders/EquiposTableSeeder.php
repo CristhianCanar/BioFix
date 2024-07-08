@@ -28,7 +28,7 @@ class EquiposTableSeeder extends Seeder
             "frecuencia_mantenimiento" => 'Anual',
             "modelo" => 'Modelo 1',
             "activo_fijo" => 'Activo',
-            "url_imagen" => 'NULL',
+            "url_imagen" => 'img_equipos/1720467640.jpg',
             "h_reg_INVIMA" => 'Invima',
             "h_reg_importacion" => 'Importacion',
             "h_reg_FDA" => 'FDA',

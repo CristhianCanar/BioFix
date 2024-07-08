@@ -34,7 +34,6 @@ class EquipoStoreRequest extends FormRequest
             'servicio' => 'nullable|string|max:200',
             'ubicacion' => 'required|string|max:200',
             'codigo_ECRI' => 'required|string|max:100',
-            'numero_documento' => 'nullable|string|max:100',
             'calibracion' => 'boolean',
             'frecuencia_calibracion' => ['required_if:calibracion,1', 'in:'.implode(',',Constants::FRECUENCIA_CALIBRACION)],
             'frecuencia_mantenimiento' => ['required', 'in:'.implode(',',Constants::FRECUENCIA_MANTENIMIENTO)],
